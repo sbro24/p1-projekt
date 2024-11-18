@@ -65,8 +65,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/bebop/Documents/programming/p1-projekt/cmake-build-debug",
-		"source" : "C:/Users/bebop/Documents/programming/p1-projekt"
+		"build" : "C:/Users/mikke/CLionProjects/p1-projekt/cmake-build-debug",
+		"source" : "C:/Users/mikke/CLionProjects/p1-projekt"
 	},
 	"version" : 
 	{
