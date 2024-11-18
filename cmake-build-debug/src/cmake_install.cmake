@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/c1/OneDrive/Onedrive/Uni/1-semester/DTG/Block 3 Induction and Recursion/work/p1-projekt/src
+# Install script for directory: C:/Users/bebop/Documents/programming/p1-projekt/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,6 +34,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2024.2.1/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2024.2.2/bin/mingw/bin/objdump.exe")
 endif()
 

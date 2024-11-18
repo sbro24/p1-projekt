@@ -1,4 +1,9 @@
 # ninja log v6
-2	295	7536232510629549	build.ninja	2dec4586a4e5fff3
+2	295	7536304009113672	build.ninja	2dec4586a4e5fff3
 35	135	7536232397414409	src/CMakeFiles/p1_projekt.dir/main.c.obj	43cd37cf8b50a525
 136	336	7536232398430609	src/p1_projekt.exe	ffacaf117a7963e
+6	418	7536304009113672	build.ninja	2dec4586a4e5fff3
+26	138	7536304011048193	src/CMakeFiles/lib.dir/input/test.c.obj	887ca19bda25a98d
+29	151	7536304011078171	src/CMakeFiles/p1_projekt.dir/main.c.obj	b5f4dcc537350e16
+139	269	7536304012169414	src/liblib.a	cdaddb9aff9942bd
+269	406	7536304013478038	src/p1_projekt.exe	78d551abdf7247de

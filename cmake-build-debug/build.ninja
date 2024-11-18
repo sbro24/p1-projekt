@@ -69,17 +69,50 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target lib
+
+
+#############################################
+# Order-only phony target for lib
+
+build cmake_object_order_depends_target_lib: phony || .
+
+build src/CMakeFiles/lib.dir/input/test.c.obj: C_COMPILER__lib_unscanned_Debug C$:/Users/bebop/Documents/programming/p1-projekt/src/input/test.c || cmake_object_order_depends_target_lib
+  DEP_FILE = src\CMakeFiles\lib.dir\input\test.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/bebop/Documents/programming/p1-projekt/src/.
+  OBJECT_DIR = src\CMakeFiles\lib.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\lib.dir\input
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target lib
+
+
+#############################################
+# Link the static library src\liblib.a
+
+build src/liblib.a: C_STATIC_LIBRARY_LINKER__lib_Debug src/CMakeFiles/lib.dir/input/test.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = src\CMakeFiles\lib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\liblib.a
+  TARGET_PDB = lib.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target p1_projekt
 
 
 #############################################
 # Order-only phony target for p1_projekt
 
-build cmake_object_order_depends_target_p1_projekt: phony || .
+build cmake_object_order_depends_target_p1_projekt: phony || cmake_object_order_depends_target_lib
 
 build src/CMakeFiles/p1_projekt.dir/main.c.obj: C_COMPILER__p1_projekt_unscanned_Debug C$:/Users/bebop/Documents/programming/p1-projekt/src/main.c || cmake_object_order_depends_target_p1_projekt
   DEP_FILE = src\CMakeFiles\p1_projekt.dir\main.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/bebop/Documents/programming/p1-projekt/src/.
   OBJECT_DIR = src\CMakeFiles\p1_projekt.dir
   OBJECT_FILE_DIR = src\CMakeFiles\p1_projekt.dir
 
@@ -91,9 +124,9 @@ build src/CMakeFiles/p1_projekt.dir/main.c.obj: C_COMPILER__p1_projekt_unscanned
 #############################################
 # Link the executable src\p1_projekt.exe
 
-build src/p1_projekt.exe: C_EXECUTABLE_LINKER__p1_projekt_Debug src/CMakeFiles/p1_projekt.dir/main.c.obj
+build src/p1_projekt.exe: C_EXECUTABLE_LINKER__p1_projekt_Debug src/CMakeFiles/p1_projekt.dir/main.c.obj | src/liblib.a || src/liblib.a
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = src/liblib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = src\CMakeFiles\p1_projekt.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -127,6 +160,10 @@ build src/rebuild_cache: phony src/CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build lib: phony src/liblib.a
+
+build liblib.a: phony src/liblib.a
+
 build p1_projekt: phony src/p1_projekt.exe
 
 build p1_projekt.exe: phony src/p1_projekt.exe
@@ -146,7 +183,7 @@ build all: phony src/all
 #############################################
 # Folder: C:/Users/bebop/Documents/programming/p1-projekt/cmake-build-debug/src
 
-build src/all: phony src/p1_projekt.exe
+build src/all: phony src/liblib.a src/p1_projekt.exe
 
 # =============================================================================
 # Built-in targets
