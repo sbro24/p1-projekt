@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 int main(void) {
-    printf("Fucking cLion!\n");
+    printf("Fucking cLion AAAAAAAAAAAAAAAAAAAAAAAAAA!\n");
     return 0;
 }
