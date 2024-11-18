@@ -6,13 +6,28 @@
 			[
 				{
 					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.29"
 					},
 					"projectIndex" : 0,
-					"source" : ".",
+					"source" : "."
+				},
+				{
+					"build" : "src",
+					"jsonFile" : "directory-src-Debug-c94b7c2814d5a21df52c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.29"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
 					"targetIndexes" : 
 					[
 						0
@@ -25,7 +40,8 @@
 				{
 					"directoryIndexes" : 
 					[
-						0
+						0,
+						1
 					],
 					"name" : "p1_projekt",
 					"targetIndexes" : 
@@ -37,9 +53,9 @@
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 0,
-					"id" : "p1_projekt::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-p1_projekt-Debug-31cd8d820f62324bb651.json",
+					"directoryIndex" : 1,
+					"id" : "p1_projekt::@145eef247bfb46b6828c",
+					"jsonFile" : "target-p1_projekt-Debug-a354ee2e2ff71291bc8b.json",
 					"name" : "p1_projekt",
 					"projectIndex" : 0
 				}
