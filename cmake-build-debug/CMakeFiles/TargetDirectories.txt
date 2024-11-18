@@ -1,0 +1,3 @@
+C:/Users/bebop/Documents/programming/p1-projekt/cmake-build-debug/CMakeFiles/p1_projekt.dir
+C:/Users/bebop/Documents/programming/p1-projekt/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bebop/Documents/programming/p1-projekt/cmake-build-debug/CMakeFiles/rebuild_cache.dir
