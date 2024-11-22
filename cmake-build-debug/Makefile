@@ -116,6 +116,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named lib
+
+# Build rule for target.
+lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lib
+.PHONY : lib
+
+# fast build rule for target.
+lib/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/build
+.PHONY : lib/fast
+
+#=============================================================================
 # Target rules for targets named p1_projekt
 
 # Build rule for target.
@@ -128,6 +141,19 @@ p1_projekt/fast:
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\p1_projekt.dir\build.make src/CMakeFiles/p1_projekt.dir/build
 .PHONY : p1_projekt/fast
 
+#=============================================================================
+# Target rules for targets named data_formater_north_carolina
+
+# Build rule for target.
+data_formater_north_carolina: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 data_formater_north_carolina
+.PHONY : data_formater_north_carolina
+
+# fast build rule for target.
+data_formater_north_carolina/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/build
+.PHONY : data_formater_north_carolina/fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -136,6 +162,8 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... data_formater_north_carolina
+	@echo ... lib
 	@echo ... p1_projekt
 .PHONY : help
 

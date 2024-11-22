@@ -69,6 +69,7 @@ include src/CMakeFiles/p1_projekt.dir/progress.make
 include src/CMakeFiles/p1_projekt.dir/flags.make
 
 src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/flags.make
+src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/includes_C.rsp
 src/CMakeFiles/p1_projekt.dir/main.c.obj: C:/Users/hjalm/CLionProjects/p1-projekt/src/main.c
 src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/p1_projekt.dir/main.c.obj"
@@ -91,6 +92,7 @@ p1_projekt_EXTERNAL_OBJECTS =
 
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/main.c.obj
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/build.make
+src/p1_projekt.exe: src/liblib.a
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/linkLibs.rsp
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/objects1.rsp
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/link.txt

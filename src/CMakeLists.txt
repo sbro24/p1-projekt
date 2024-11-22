@@ -1,6 +1,7 @@
 # We create an executable to run the program
 add_library(lib
-        input/test.c)
+        input/test.c
+        functions.c)
 
 # Make header files in the current folder available for #include
 target_include_directories(lib PUBLIC .)

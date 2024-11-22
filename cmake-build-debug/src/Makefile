@@ -116,6 +116,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+src/CMakeFiles/lib.dir/rule:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/lib.dir/rule
+.PHONY : src/CMakeFiles/lib.dir/rule
+
+# Convenience name for target.
+lib: src/CMakeFiles/lib.dir/rule
+.PHONY : lib
+
+# fast build rule for target.
+lib/fast:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/build
+.PHONY : lib/fast
+
+# Convenience name for target.
 src/CMakeFiles/p1_projekt.dir/rule:
 	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/p1_projekt.dir/rule
 .PHONY : src/CMakeFiles/p1_projekt.dir/rule
@@ -128,6 +142,92 @@ p1_projekt: src/CMakeFiles/p1_projekt.dir/rule
 p1_projekt/fast:
 	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\p1_projekt.dir\build.make src/CMakeFiles/p1_projekt.dir/build
 .PHONY : p1_projekt/fast
+
+# Convenience name for target.
+src/CMakeFiles/data_formater_north_carolina.dir/rule:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/data_formater_north_carolina.dir/rule
+.PHONY : src/CMakeFiles/data_formater_north_carolina.dir/rule
+
+# Convenience name for target.
+data_formater_north_carolina: src/CMakeFiles/data_formater_north_carolina.dir/rule
+.PHONY : data_formater_north_carolina
+
+# fast build rule for target.
+data_formater_north_carolina/fast:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/build
+.PHONY : data_formater_north_carolina/fast
+
+data_formaters/north_carolina/north_carolina.obj: data_formaters/north_carolina/north_carolina.c.obj
+.PHONY : data_formaters/north_carolina/north_carolina.obj
+
+# target to build an object file
+data_formaters/north_carolina/north_carolina.c.obj:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/data_formaters/north_carolina/north_carolina.c.obj
+.PHONY : data_formaters/north_carolina/north_carolina.c.obj
+
+data_formaters/north_carolina/north_carolina.i: data_formaters/north_carolina/north_carolina.c.i
+.PHONY : data_formaters/north_carolina/north_carolina.i
+
+# target to preprocess a source file
+data_formaters/north_carolina/north_carolina.c.i:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/data_formaters/north_carolina/north_carolina.c.i
+.PHONY : data_formaters/north_carolina/north_carolina.c.i
+
+data_formaters/north_carolina/north_carolina.s: data_formaters/north_carolina/north_carolina.c.s
+.PHONY : data_formaters/north_carolina/north_carolina.s
+
+# target to generate assembly for a file
+data_formaters/north_carolina/north_carolina.c.s:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/data_formaters/north_carolina/north_carolina.c.s
+.PHONY : data_formaters/north_carolina/north_carolina.c.s
+
+functions.obj: functions.c.obj
+.PHONY : functions.obj
+
+# target to build an object file
+functions.c.obj:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/functions.c.obj
+.PHONY : functions.c.obj
+
+functions.i: functions.c.i
+.PHONY : functions.i
+
+# target to preprocess a source file
+functions.c.i:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/functions.c.i
+.PHONY : functions.c.i
+
+functions.s: functions.c.s
+.PHONY : functions.s
+
+# target to generate assembly for a file
+functions.c.s:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/functions.c.s
+.PHONY : functions.c.s
+
+input/test.obj: input/test.c.obj
+.PHONY : input/test.obj
+
+# target to build an object file
+input/test.c.obj:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/input/test.c.obj
+.PHONY : input/test.c.obj
+
+input/test.i: input/test.c.i
+.PHONY : input/test.i
+
+# target to preprocess a source file
+input/test.c.i:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/input/test.c.i
+.PHONY : input/test.c.i
+
+input/test.s: input/test.c.s
+.PHONY : input/test.s
+
+# target to generate assembly for a file
+input/test.c.s:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/input/test.c.s
+.PHONY : input/test.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -161,7 +261,18 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... data_formater_north_carolina
+	@echo ... lib
 	@echo ... p1_projekt
+	@echo ... data_formaters/north_carolina/north_carolina.obj
+	@echo ... data_formaters/north_carolina/north_carolina.i
+	@echo ... data_formaters/north_carolina/north_carolina.s
+	@echo ... functions.obj
+	@echo ... functions.i
+	@echo ... functions.s
+	@echo ... input/test.obj
+	@echo ... input/test.i
+	@echo ... input/test.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
