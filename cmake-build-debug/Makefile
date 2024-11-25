@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\mikke\CLionProjects\p1-projekt
+CMAKE_SOURCE_DIR = "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\CMakeFiles C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\CMakeFiles" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -116,6 +116,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named lib
+
+# Build rule for target.
+lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lib
+.PHONY : lib
+
+# fast build rule for target.
+lib/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/build
+.PHONY : lib/fast
+
+#=============================================================================
 # Target rules for targets named p1_projekt
 
 # Build rule for target.
@@ -128,6 +141,19 @@ p1_projekt/fast:
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\p1_projekt.dir\build.make src/CMakeFiles/p1_projekt.dir/build
 .PHONY : p1_projekt/fast
 
+#=============================================================================
+# Target rules for targets named data_formater_north_carolina
+
+# Build rule for target.
+data_formater_north_carolina: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 data_formater_north_carolina
+.PHONY : data_formater_north_carolina
+
+# fast build rule for target.
+data_formater_north_carolina/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/build
+.PHONY : data_formater_north_carolina/fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -136,6 +162,8 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... data_formater_north_carolina
+	@echo ... lib
 	@echo ... p1_projekt
 .PHONY : help
 

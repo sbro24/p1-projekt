@@ -4,7 +4,7 @@
 # compile C with C:/Program Files/JetBrains/CLion 2024.2.1/bin/mingw/bin/gcc.exe
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = @CMakeFiles/p1_projekt.dir/includes_C.rsp
 
 C_FLAGS = -g -fdiagnostics-color=always
 

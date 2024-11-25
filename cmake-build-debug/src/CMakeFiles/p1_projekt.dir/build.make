@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\mikke\CLionProjects\p1-projekt
+CMAKE_SOURCE_DIR = "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/p1_projekt.dir/depend.make
@@ -69,18 +69,19 @@ include src/CMakeFiles/p1_projekt.dir/progress.make
 include src/CMakeFiles/p1_projekt.dir/flags.make
 
 src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/flags.make
-src/CMakeFiles/p1_projekt.dir/main.c.obj: C:/Users/mikke/CLionProjects/p1-projekt/src/main.c
+src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/includes_C.rsp
+src/CMakeFiles/p1_projekt.dir/main.c.obj: C:/Users/c1/OneDrive\ -\ Aalborg\ Universitet/P1/project/src/main.c
 src/CMakeFiles/p1_projekt.dir/main.c.obj: src/CMakeFiles/p1_projekt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/p1_projekt.dir/main.c.obj"
-	cd /d C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/p1_projekt.dir/main.c.obj -MF CMakeFiles\p1_projekt.dir\main.c.obj.d -o CMakeFiles\p1_projekt.dir\main.c.obj -c C:\Users\mikke\CLionProjects\p1-projekt\src\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/p1_projekt.dir/main.c.obj"
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/p1_projekt.dir/main.c.obj -MF CMakeFiles\p1_projekt.dir\main.c.obj.d -o CMakeFiles\p1_projekt.dir\main.c.obj -c "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\src\main.c"
 
 src/CMakeFiles/p1_projekt.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/p1_projekt.dir/main.c.i"
-	cd /d C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\mikke\CLionProjects\p1-projekt\src\main.c > CMakeFiles\p1_projekt.dir\main.c.i
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\src\main.c" > CMakeFiles\p1_projekt.dir\main.c.i
 
 src/CMakeFiles/p1_projekt.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/p1_projekt.dir/main.c.s"
-	cd /d C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\mikke\CLionProjects\p1-projekt\src\main.c -o CMakeFiles\p1_projekt.dir\main.c.s
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1\src && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\src\main.c" -o CMakeFiles\p1_projekt.dir\main.c.s
 
 # Object files for target p1_projekt
 p1_projekt_OBJECTS = \
@@ -91,21 +92,22 @@ p1_projekt_EXTERNAL_OBJECTS =
 
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/main.c.obj
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/build.make
+src/p1_projekt.exe: src/liblib.a
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/linkLibs.rsp
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/objects1.rsp
 src/p1_projekt.exe: src/CMakeFiles/p1_projekt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable p1_projekt.exe"
-	cd /d C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\p1_projekt.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable p1_projekt.exe"
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1\src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\p1_projekt.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/p1_projekt.dir/build: src/p1_projekt.exe
 .PHONY : src/CMakeFiles/p1_projekt.dir/build
 
 src/CMakeFiles/p1_projekt.dir/clean:
-	cd /d C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src && $(CMAKE_COMMAND) -P CMakeFiles\p1_projekt.dir\cmake_clean.cmake
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1\src && $(CMAKE_COMMAND) -P CMakeFiles\p1_projekt.dir\cmake_clean.cmake
 .PHONY : src/CMakeFiles/p1_projekt.dir/clean
 
 src/CMakeFiles/p1_projekt.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\mikke\CLionProjects\p1-projekt C:\Users\mikke\CLionProjects\p1-projekt\src C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src C:\Users\mikke\CLionProjects\p1-projekt\cmake-build-debug\src\CMakeFiles\p1_projekt.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\src" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\src" "C:\Users\c1\OneDrive - Aalborg Universitet\P1\project\cmake-build-debug\src\CMakeFiles\p1_projekt.dir\DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : src/CMakeFiles/p1_projekt.dir/depend
 
