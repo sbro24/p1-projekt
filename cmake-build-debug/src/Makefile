@@ -171,29 +171,19 @@ graph_test/fast:
 	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/build
 .PHONY : graph_test/fast
 
-calculate_proportionality.obj: calculate_proportionality.c.obj
-.PHONY : calculate_proportionality.obj
+# Convenience name for target.
+src/CMakeFiles/proportionality_test.dir/rule:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/proportionality_test.dir/rule
+.PHONY : src/CMakeFiles/proportionality_test.dir/rule
 
-# target to build an object file
-calculate_proportionality.c.obj:
-	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/calculate_proportionality.c.obj
-.PHONY : calculate_proportionality.c.obj
+# Convenience name for target.
+proportionality_test: src/CMakeFiles/proportionality_test.dir/rule
+.PHONY : proportionality_test
 
-calculate_proportionality.i: calculate_proportionality.c.i
-.PHONY : calculate_proportionality.i
-
-# target to preprocess a source file
-calculate_proportionality.c.i:
-	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/calculate_proportionality.c.i
-.PHONY : calculate_proportionality.c.i
-
-calculate_proportionality.s: calculate_proportionality.c.s
-.PHONY : calculate_proportionality.s
-
-# target to generate assembly for a file
-calculate_proportionality.c.s:
-	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\lib.dir\build.make src/CMakeFiles/lib.dir/calculate_proportionality.c.s
-.PHONY : calculate_proportionality.c.s
+# fast build rule for target.
+proportionality_test/fast:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\proportionality_test.dir\build.make src/CMakeFiles/proportionality_test.dir/build
+.PHONY : proportionality_test/fast
 
 data_formaters/north_carolina/north_carolina.obj: data_formaters/north_carolina/north_carolina.c.obj
 .PHONY : data_formaters/north_carolina/north_carolina.obj
@@ -267,6 +257,30 @@ main.c.s:
 	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\p1_projekt.dir\build.make src/CMakeFiles/p1_projekt.dir/main.c.s
 .PHONY : main.c.s
 
+project_test/calculate_proportionality.obj: project_test/calculate_proportionality.c.obj
+.PHONY : project_test/calculate_proportionality.obj
+
+# target to build an object file
+project_test/calculate_proportionality.c.obj:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\proportionality_test.dir\build.make src/CMakeFiles/proportionality_test.dir/project_test/calculate_proportionality.c.obj
+.PHONY : project_test/calculate_proportionality.c.obj
+
+project_test/calculate_proportionality.i: project_test/calculate_proportionality.c.i
+.PHONY : project_test/calculate_proportionality.i
+
+# target to preprocess a source file
+project_test/calculate_proportionality.c.i:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\proportionality_test.dir\build.make src/CMakeFiles/proportionality_test.dir/project_test/calculate_proportionality.c.i
+.PHONY : project_test/calculate_proportionality.c.i
+
+project_test/calculate_proportionality.s: project_test/calculate_proportionality.c.s
+.PHONY : project_test/calculate_proportionality.s
+
+# target to generate assembly for a file
+project_test/calculate_proportionality.c.s:
+	cd /d C:\Users\hjalm\CLionProjects\p1-projekt\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\proportionality_test.dir\build.make src/CMakeFiles/proportionality_test.dir/project_test/calculate_proportionality.c.s
+.PHONY : project_test/calculate_proportionality.c.s
+
 project_test/graph_test.obj: project_test/graph_test.c.obj
 .PHONY : project_test/graph_test.obj
 
@@ -303,9 +317,7 @@ help:
 	@echo ... graph_test
 	@echo ... lib
 	@echo ... p1_projekt
-	@echo ... calculate_proportionality.obj
-	@echo ... calculate_proportionality.i
-	@echo ... calculate_proportionality.s
+	@echo ... proportionality_test
 	@echo ... data_formaters/north_carolina/north_carolina.obj
 	@echo ... data_formaters/north_carolina/north_carolina.i
 	@echo ... data_formaters/north_carolina/north_carolina.s
@@ -315,6 +327,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... project_test/calculate_proportionality.obj
+	@echo ... project_test/calculate_proportionality.i
+	@echo ... project_test/calculate_proportionality.s
 	@echo ... project_test/graph_test.obj
 	@echo ... project_test/graph_test.i
 	@echo ... project_test/graph_test.s

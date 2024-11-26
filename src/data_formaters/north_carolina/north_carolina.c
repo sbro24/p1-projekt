@@ -22,12 +22,12 @@ int main(void) {
 
     const int party_length = sizeof(party) / sizeof(party[0]);
 
-    typedef struct {
+    struct county_t {
         char name[COUNTY_NAME_LENGTH];
         int district;
         int votes[party_length];
-        int neighbours[10];
-    } county_t;
+    };
+    typedef struct county_t county_t;
 
     //Open file
     FILE *raw_file = fopen("us_house_north_carolina_results_2024.csv", "r");
@@ -43,23 +43,19 @@ int main(void) {
     int number_of_counties = 0;
     //check if county name n - 1 is different for county name n
     char county_name[COUNTY_NAME_LENGTH];
-    char previous_county_name[COUNTY_NAME_LENGTH] = "";
-    int county_district = 0;
-    int previous_county_district = 0;
+    char previous_county_name[COUNTY_NAME_LENGTH] = "AAAAAAAAAAAA";
 
     //loop through file
     while (feof(raw_file) == false) {
-        fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
-        // comparing strings
-        if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
-            printf("%s %i != %s %i\n", county_name, county_district, previous_county_name, previous_county_district);
+        fscanf(raw_file, "%[^\t] \t %*i \t %*s \t %*i\n", &county_name);
+        // if (county_name == previous_county_name) number_of_counties++
+        if (compare_strings(county_name, previous_county_name, COUNTY_NAME_LENGTH) == 0) {
+            //printf("%s != %s\n", county_name, previous_county_name);
             number_of_counties++;
             memcpy(previous_county_name, county_name, COUNTY_NAME_LENGTH);
-            previous_county_district = county_district;
         }
     }
 
-    county_t county[number_of_counties];
 
     printf("The number of counties is: %d\n", number_of_counties);
 
@@ -68,6 +64,19 @@ int main(void) {
     return 0;
 }
 
+void copy_array(char *from, char *to) {
+    int from_length = sizeof(from);
+    int to_length = sizeof(to);
+
+    if (from_length != to_length) {
+        printf("Error in copy_array(): array length is different!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < from_length; i++) {
+        to[i] = from[i];
+    }
+}
 
 int compare_strings(const char *a, const char *b, int length) {
     for (int i = 0; i < COUNTY_NAME_LENGTH; i++) {

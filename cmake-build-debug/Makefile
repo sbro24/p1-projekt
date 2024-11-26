@@ -167,6 +167,19 @@ graph_test/fast:
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/build
 .PHONY : graph_test/fast
 
+#=============================================================================
+# Target rules for targets named proportionality_test
+
+# Build rule for target.
+proportionality_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 proportionality_test
+.PHONY : proportionality_test
+
+# fast build rule for target.
+proportionality_test/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\proportionality_test.dir\build.make src/CMakeFiles/proportionality_test.dir/build
+.PHONY : proportionality_test/fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -179,6 +192,7 @@ help:
 	@echo ... graph_test
 	@echo ... lib
 	@echo ... p1_projekt
+	@echo ... proportionality_test
 .PHONY : help
 
 
