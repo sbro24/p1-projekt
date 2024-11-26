@@ -157,6 +157,20 @@ data_formater_north_carolina/fast:
 	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/build
 .PHONY : data_formater_north_carolina/fast
 
+# Convenience name for target.
+src/CMakeFiles/graph_test.dir/rule:
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/graph_test.dir/rule
+.PHONY : src/CMakeFiles/graph_test.dir/rule
+
+# Convenience name for target.
+graph_test: src/CMakeFiles/graph_test.dir/rule
+.PHONY : graph_test
+
+# fast build rule for target.
+graph_test/fast:
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/build
+.PHONY : graph_test/fast
+
 data_formaters/north_carolina/north_carolina.obj: data_formaters/north_carolina/north_carolina.c.obj
 .PHONY : data_formaters/north_carolina/north_carolina.obj
 
@@ -253,6 +267,30 @@ main.c.s:
 	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\p1_projekt.dir\build.make src/CMakeFiles/p1_projekt.dir/main.c.s
 .PHONY : main.c.s
 
+project_test/graph_test.obj: project_test/graph_test.c.obj
+.PHONY : project_test/graph_test.obj
+
+# target to build an object file
+project_test/graph_test.c.obj:
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/project_test/graph_test.c.obj
+.PHONY : project_test/graph_test.c.obj
+
+project_test/graph_test.i: project_test/graph_test.c.i
+.PHONY : project_test/graph_test.i
+
+# target to preprocess a source file
+project_test/graph_test.c.i:
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/project_test/graph_test.c.i
+.PHONY : project_test/graph_test.c.i
+
+project_test/graph_test.s: project_test/graph_test.c.s
+.PHONY : project_test/graph_test.s
+
+# target to generate assembly for a file
+project_test/graph_test.c.s:
+	cd /d C:\Users\c1\ONEDRI~1\P1\project\CMAKE-~1 && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/project_test/graph_test.c.s
+.PHONY : project_test/graph_test.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -262,6 +300,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_formater_north_carolina
+	@echo ... graph_test
 	@echo ... lib
 	@echo ... p1_projekt
 	@echo ... data_formaters/north_carolina/north_carolina.obj
@@ -276,6 +315,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... project_test/graph_test.obj
+	@echo ... project_test/graph_test.i
+	@echo ... project_test/graph_test.s
 .PHONY : help
 
 
