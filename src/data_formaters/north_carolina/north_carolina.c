@@ -11,7 +11,7 @@ void copy_array(char from[], char to[]);
 int compare_strings(const char *a, const char *b, int length);
 
 int main(void) {
-    char party[][3] = {
+    char party[][4] = {
         "CST",
         "DEM",
         "GRE",
@@ -22,12 +22,12 @@ int main(void) {
 
     const int party_length = sizeof(party) / sizeof(party[0]);
 
-    struct county_t {
+    typedef struct {
         char name[COUNTY_NAME_LENGTH];
         int district;
         int votes[party_length];
-    };
-    typedef struct county_t county_t;
+        int neighbors[10];
+    } county_t;
 
     //Open file
     FILE *raw_file = fopen("us_house_north_carolina_results_2024.csv", "r");
@@ -52,7 +52,7 @@ int main(void) {
         fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
         // if (county_name == previous_county_name) number_of_counties++
         if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
-            printf("%s %i != %s %i\n", county_name, county_district, previous_county_name, previous_county_district);
+            //printf("%s %i != %s %i\n", county_name, county_district, previous_county_name, previous_county_district);
             number_of_counties++;
             strcpy(previous_county_name, county_name);
             previous_county_district = county_district;
@@ -61,6 +61,21 @@ int main(void) {
 
     //reset file pointer
     rewind(raw_file);
+    //skip first line
+    fscanf(raw_file, "%*[^\n]\n");
+
+    int county_votes;
+    char county_party[4];
+    while (feof(raw_file) == false) {
+        fscanf(raw_file, "%[^\t] \t %i \t %s \t %i\n", &county_name, &county_district, &county_party, &county_votes);
+        for (int i = 0; i < party_length; i++) {
+            printf("%s\n", party[i]);
+            if (strcmp(county_party, party[i]) == 0) {
+                //printf("%s\n", party[i]);
+            }
+        }
+    }
+
 
     printf("The number of counties is: %d\n", number_of_counties);
 
