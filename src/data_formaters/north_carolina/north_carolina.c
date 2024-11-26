@@ -44,46 +44,28 @@ int main(void) {
     //check if county name n - 1 is different for county name n
     char county_name[COUNTY_NAME_LENGTH];
     char previous_county_name[COUNTY_NAME_LENGTH] = "AAAAAAAAAAAA";
+    int county_district = 0;
+    int previous_county_district = 0;
 
     //loop through file
     while (feof(raw_file) == false) {
-        fscanf(raw_file, "%[^\t] \t %*i \t %*s \t %*i\n", &county_name);
+        fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
         // if (county_name == previous_county_name) number_of_counties++
-        if (compare_strings(county_name, previous_county_name, COUNTY_NAME_LENGTH) == 0) {
-            //printf("%s != %s\n", county_name, previous_county_name);
+        if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
+            printf("%s %i != %s %i\n", county_name, county_district, previous_county_name, previous_county_district);
             number_of_counties++;
-            memcpy(previous_county_name, county_name, COUNTY_NAME_LENGTH);
+            strcpy(previous_county_name, county_name);
+            previous_county_district = county_district;
         }
     }
 
+    //reset file pointer
+    rewind(raw_file);
 
     printf("The number of counties is: %d\n", number_of_counties);
 
     //printf("%s \t %i \t %s \t %i\n", first_line.county, first_line.district, first_line.party, first_line.votes);
 
     return 0;
-}
-
-void copy_array(char *from, char *to) {
-    int from_length = sizeof(from);
-    int to_length = sizeof(to);
-
-    if (from_length != to_length) {
-        printf("Error in copy_array(): array length is different!\n");
-        exit(EXIT_FAILURE);
-    }
-
-    for (int i = 0; i < from_length; i++) {
-        to[i] = from[i];
-    }
-}
-
-int compare_strings(const char *a, const char *b, int length) {
-    for (int i = 0; i < COUNTY_NAME_LENGTH; i++) {
-        if (a[i] != b[i]) {
-            return 0;
-        }
-    }
-    return 1;
 }
 
