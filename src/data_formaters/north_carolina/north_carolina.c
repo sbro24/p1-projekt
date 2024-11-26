@@ -64,13 +64,18 @@ int main(void) {
     //skip first line
     fscanf(raw_file, "%*[^\n]\n");
 
+    county_t counties[number_of_counties];
+
     int county_votes;
     char county_party[4];
+    printf("%llu\n", sizeof(county_party) / sizeof(county_party[0]));
+    printf("%llu", sizeof(party[0]) / sizeof(party[0][0]));
     while (feof(raw_file) == false) {
         fscanf(raw_file, "%[^\t] \t %i \t %s \t %i\n", &county_name, &county_district, &county_party, &county_votes);
+        printf("%s \t %i \t %s \t %i\n", county_name, county_district, county_party, county_votes);
         for (int i = 0; i < party_length; i++) {
-            printf("%s\n", party[i]);
             if (strcmp(county_party, party[i]) == 0) {
+                printf("%s\n", party[i]);
                 //printf("%s\n", party[i]);
             }
         }
