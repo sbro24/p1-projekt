@@ -23,7 +23,6 @@ add_executable(graph_test project_test/graph_test.c)
 target_link_libraries(graph_test lib)
 
 # Data formaters executables
-add_executable(proportionality_test project_test/calculate_proportionality.c
-        project_test/calculate_proportionality.c)
+add_executable(proportionality_test project_test/calculate_proportionality.c)
 # We link our library to the program executable, so the executable can access the functions in the library.
 target_link_libraries(proportionality_test lib)
