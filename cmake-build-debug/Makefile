@@ -154,6 +154,19 @@ data_formater_north_carolina/fast:
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\data_formater_north_carolina.dir\build.make src/CMakeFiles/data_formater_north_carolina.dir/build
 .PHONY : data_formater_north_carolina/fast
 
+#=============================================================================
+# Target rules for targets named graph_test
+
+# Build rule for target.
+graph_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 graph_test
+.PHONY : graph_test
+
+# fast build rule for target.
+graph_test/fast:
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\graph_test.dir\build.make src/CMakeFiles/graph_test.dir/build
+.PHONY : graph_test/fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -163,6 +176,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_formater_north_carolina
+	@echo ... graph_test
 	@echo ... lib
 	@echo ... p1_projekt
 .PHONY : help
