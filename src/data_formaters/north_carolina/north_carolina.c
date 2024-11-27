@@ -7,10 +7,11 @@
 
 #define COUNTY_NAME_LENGTH 30
 
-void copy_array(char from[], char to[]);
-int compare_strings(const char *a, const char *b, int length);
+int count_counties(FILE *raw_file);
 
 int main(void) {
+    const char file_name[] = "us_house_north_carolina_results_2024.csv";
+
     char party[][4] = {
         "CST",
         "DEM",
@@ -23,6 +24,7 @@ int main(void) {
     const int party_length = sizeof(party) / sizeof(party[0]);
 
     typedef struct {
+        int index;
         char name[COUNTY_NAME_LENGTH];
         int district;
         int votes[party_length];
@@ -30,52 +32,36 @@ int main(void) {
     } county_t;
 
     //Open file
-    FILE *raw_file = fopen("us_house_north_carolina_results_2024.csv", "r");
+    FILE *raw_file = fopen(file_name, "r");
     if (raw_file == NULL) {
-        printf("Error opening file\n");
+        printf("Error opening file \"%s\"\n", file_name);
         exit(EXIT_FAILURE);
     }
 
-    //skip first line
-    fscanf(raw_file, "%*[^\n]\n");
 
-    //count the number of unique counties
-    int number_of_counties = 0;
-    //check if county name n - 1 is different for county name n
-    char county_name[COUNTY_NAME_LENGTH];
-    char previous_county_name[COUNTY_NAME_LENGTH] = "AAAAAAAAAAAA";
-    int county_district = 0;
-    int previous_county_district = 0;
+    int number_of_counties = count_counties(raw_file);
 
-    //loop through file
-    while (feof(raw_file) == false) {
-        fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
-        // if (county_name == previous_county_name) number_of_counties++
-        if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
-            //printf("%s %i != %s %i\n", county_name, county_district, previous_county_name, previous_county_district);
-            number_of_counties++;
-            strcpy(previous_county_name, county_name);
-            previous_county_district = county_district;
-        }
-    }
+    county_t counties[number_of_counties];
+
+
 
     //reset file pointer
     rewind(raw_file);
     //skip first line
     fscanf(raw_file, "%*[^\n]\n");
 
-    county_t counties[number_of_counties];
-
+    char county_name[COUNTY_NAME_LENGTH];
+    int county_district;
     int county_votes;
     char county_party[4];
-    printf("%llu\n", sizeof(county_party) / sizeof(county_party[0]));
-    printf("%llu", sizeof(party[0]) / sizeof(party[0][0]));
+
     while (feof(raw_file) == false) {
         fscanf(raw_file, "%[^\t] \t %i \t %s \t %i\n", &county_name, &county_district, &county_party, &county_votes);
+
         printf("%s \t %i \t %s \t %i\n", county_name, county_district, county_party, county_votes);
         for (int i = 0; i < party_length; i++) {
             if (strcmp(county_party, party[i]) == 0) {
-                printf("%s\n", party[i]);
+
                 //printf("%s\n", party[i]);
             }
         }
@@ -88,4 +74,31 @@ int main(void) {
 
     return 0;
 }
+
+int count_counties(FILE *raw_file) {
+    //reset file pointer
+    rewind(raw_file);
+    //skip first line
+    fscanf(raw_file, "%*[^\n]\n");
+
+    int count = 0;
+    char county_name[COUNTY_NAME_LENGTH], previous_county_name[COUNTY_NAME_LENGTH] = "";
+    int county_district = 0, previous_county_district = 0;
+
+    //loop through file until end
+    while (feof(raw_file) == false) {
+        //Scan line, county_name and county_district
+        fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
+        // if either county_name or county_district is different
+        if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
+            //Count 1 up and insert county_name and county_district into previous_county_name and previous_county_district
+            count++;
+            strcpy(previous_county_name, county_name);
+            previous_county_district = county_district;
+        }
+    }
+    return count;
+}
+
+
 
