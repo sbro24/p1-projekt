@@ -4,11 +4,6 @@
 
 // Numbers are from 2022 currently (wikipedia)
 
-#define TOTAL_VOTES 5217905;
-#define DEM_TOTAL_VOTES 2328248;
-#define REP_TOTAL_VOTES 2889657;
-#define OTHER_TOTAL_VOTES 0;
-
 //Structs
 typedef struct  {
     int district_number;
@@ -30,6 +25,14 @@ vote_percentage_t calculate_percentages(district_t district);
 void print_district_votes(district_t district);
 
 void print_district_vote_percentages(vote_percentage_t vote_percentage);
+
+void calculate_totals_and_seats(district_t districts[], int number_of_districts, int *dem_seats,
+    int *rep_seats, int *other_seats, int *total_dem_votes, int *total_rep_votes, int *total_other_votes, int *total_votes);
+
+void calculate_total_percentages(vote_percentage_t *total_vote_percentage, vote_percentage_t *seat_percentage,
+    int total_votes,int dem_votes, int rep_votes, int other_votes, int dem_seats, int rep_seats, int other_seats, int number_of_districts);
+
+void print_total_results(vote_percentage_t total_vote_percentage, vote_percentage_t seat_percentage, int dem_seats, int rep_seats, int other_seats, int total_votes);
 
 // Functions
 vote_percentage_t calculate_percentages(district_t district) {
@@ -63,8 +66,72 @@ void print_district_vote_percentages(vote_percentage_t vote_percentage) {
     printf("\n");
 }
 
+void calculate_totals_and_seats(district_t districts[], int number_of_districts, int *dem_seats,
+    int *rep_seats, int *other_seats, int *total_dem_votes, int *total_rep_votes, int *total_other_votes, int *total_votes) {
+    *dem_seats = 0;
+    *rep_seats = 0;
+    *other_seats = 0;
+    *total_votes = 0;
+    *total_dem_votes = 0;
+    *total_rep_votes = 0;
+    *total_other_votes = 0;
+
+    for (int i = 0; i < number_of_districts; i++) {
+        *total_dem_votes += districts[i].dem_votes;
+        *total_rep_votes += districts[i].rep_votes;
+        *total_other_votes += districts[i].other_votes;
+        *total_votes += districts[i].total_district_votes;
+
+        if (districts[i].dem_votes > districts[i].rep_votes &&
+            districts[i].dem_votes > districts[i].other_votes) {
+            (*dem_seats)++;
+        } else if (districts[i].rep_votes > districts[i].dem_votes &&
+                    districts[i].rep_votes > districts[i].other_votes) {
+            (*rep_seats)++;
+        } else {
+            (*other_seats)++;
+        }
+    }
+}
+
+void calculate_total_percentages(vote_percentage_t *total_vote_percentage, vote_percentage_t *seat_percentage, int total_votes,
+    int dem_votes, int rep_votes, int other_votes, int dem_seats, int rep_seats, int other_seats, int number_of_districts) {
+    // Calculate the total vote percentages
+    total_vote_percentage -> dem_vote_percentage = 100.0 * dem_votes / total_votes;
+    total_vote_percentage -> rep_vote_percentage = 100.0 * rep_votes / total_votes;
+    total_vote_percentage -> other_vote_percentage = 100.0 * other_votes / total_votes;
+
+    // Calculate the seat percentage
+    seat_percentage->dem_vote_percentage = 100.0 * dem_seats / number_of_districts;
+    seat_percentage->rep_vote_percentage = 100.0 * rep_seats / number_of_districts;
+    seat_percentage->other_vote_percentage = 100.0 * other_seats / number_of_districts;
+}
+
+void print_total_results(vote_percentage_t total_vote_percentage, vote_percentage_t seat_percentage, int dem_seats, int rep_seats, int other_seats, int total_votes) {
+    printf("Total results:\n");
+    printf("Democratic seats: %d\n", dem_seats);
+    printf("Republican Seats: %d\n", rep_seats);
+    printf("Other Seats: %d\n", other_seats);
+    printf("\n");
+
+    printf("Percentage of seats:\n");
+    printf("Democratic seat percentage: %lf\n", seat_percentage.dem_vote_percentage);
+    printf("Republican Seat Percentage: %lf\n", seat_percentage.rep_vote_percentage);
+    printf("Other Seat Percentage: %lf\n", seat_percentage.other_vote_percentage);
+    printf("\n");
+
+    printf("Total vote percentages:\n");
+    printf("Democratic Vote Percentage: %lf\n", total_vote_percentage.dem_vote_percentage);
+    printf("Republican Vote Percentage: %lf\n", total_vote_percentage.rep_vote_percentage);
+    printf("Other Vote Percentage: %lf\n", total_vote_percentage.other_vote_percentage);
+    printf("\n");
+}
+
 int main(void) {
     // Numbers are from 2022 currently (wikipedia)
+    // Implement: Show what a proportional result of seats would be.
+    // Implement: Ask the user for what they want to research (votes, percentages, seats, districts etc.)
+
 
     district_t districts[] = {
         {1, 257776, 134996, 122780, 0},
@@ -84,15 +151,25 @@ int main(void) {
     };
     int number_of_districts = sizeof(districts) / sizeof(districts[0]);
 
+    //Calculate and print all the districts
     for (int i = 0; i < number_of_districts; i++) {
         vote_percentage_t vote_results = calculate_percentages(districts[i]);
         print_district_votes(districts[i]);
         print_district_vote_percentages(vote_results);
-
     }
 
+    int dem_seats, rep_seats, other_seats, total_dem_votes, total_rep_votes, total_other_votes, total_votes;
+    vote_percentage_t total_vote_percentages, seat_percentages;
 
+    // Calculate seats and total votes
+    calculate_totals_and_seats(districts, number_of_districts, &dem_seats, &rep_seats, &other_seats, &total_dem_votes, &total_rep_votes, &total_other_votes, &total_votes);
 
+    // Calculate percentages
+    calculate_total_percentages(&total_vote_percentages, &seat_percentages, total_votes, total_dem_votes, total_rep_votes, total_other_votes,
+        dem_seats, rep_seats, other_seats, number_of_districts);
+
+    // Print results
+    print_total_results(total_vote_percentages, seat_percentages, dem_seats, rep_seats, other_seats, total_votes);
 
   return 0;
 }
