@@ -7,11 +7,12 @@
 
 #define COUNTY_NAME_LENGTH 30
 
-void copy_array(char from[], char to[]);
-int compare_strings(const char *a, const char *b, int length);
+int count_counties(FILE *raw_file);
 
 int main(void) {
-    char party[][3] = {
+    const char file_name[] = "us_house_north_carolina_results_2024.csv";
+
+    char party[][4] = {
         "CST",
         "DEM",
         "GRE",
@@ -22,37 +23,47 @@ int main(void) {
 
     const int party_length = sizeof(party) / sizeof(party[0]);
 
-    struct county_t {
+    typedef struct {
+        int index;
         char name[COUNTY_NAME_LENGTH];
         int district;
         int votes[party_length];
-    };
-    typedef struct county_t county_t;
+        int neighbors[10];
+    } county_t;
 
     //Open file
-    FILE *raw_file = fopen("us_house_north_carolina_results_2024.csv", "r");
+    FILE *raw_file = fopen(file_name, "r");
     if (raw_file == NULL) {
-        printf("Error opening file\n");
+        printf("Error opening file \"%s\"\n", file_name);
         exit(EXIT_FAILURE);
     }
 
+
+    int number_of_counties = count_counties(raw_file);
+
+    county_t counties[number_of_counties];
+
+
+
+    //reset file pointer
+    rewind(raw_file);
     //skip first line
     fscanf(raw_file, "%*[^\n]\n");
 
-    //count the number of unique counties
-    int number_of_counties = 0;
-    //check if county name n - 1 is different for county name n
     char county_name[COUNTY_NAME_LENGTH];
-    char previous_county_name[COUNTY_NAME_LENGTH] = "AAAAAAAAAAAA";
+    int county_district;
+    int county_votes;
+    char county_party[4];
 
-    //loop through file
     while (feof(raw_file) == false) {
-        fscanf(raw_file, "%[^\t] \t %*i \t %*s \t %*i\n", &county_name);
-        // if (county_name == previous_county_name) number_of_counties++
-        if (compare_strings(county_name, previous_county_name, COUNTY_NAME_LENGTH) == 0) {
-            //printf("%s != %s\n", county_name, previous_county_name);
-            number_of_counties++;
-            memcpy(previous_county_name, county_name, COUNTY_NAME_LENGTH);
+        fscanf(raw_file, "%[^\t] \t %i \t %s \t %i\n", &county_name, &county_district, &county_party, &county_votes);
+
+        printf("%s \t %i \t %s \t %i\n", county_name, county_district, county_party, county_votes);
+        for (int i = 0; i < party_length; i++) {
+            if (strcmp(county_party, party[i]) == 0) {
+
+                //printf("%s\n", party[i]);
+            }
         }
     }
 
@@ -64,26 +75,30 @@ int main(void) {
     return 0;
 }
 
-void copy_array(char *from, char *to) {
-    int from_length = sizeof(from);
-    int to_length = sizeof(to);
+int count_counties(FILE *raw_file) {
+    //reset file pointer
+    rewind(raw_file);
+    //skip first line
+    fscanf(raw_file, "%*[^\n]\n");
 
-    if (from_length != to_length) {
-        printf("Error in copy_array(): array length is different!\n");
-        exit(EXIT_FAILURE);
-    }
+    int count = 0;
+    char county_name[COUNTY_NAME_LENGTH], previous_county_name[COUNTY_NAME_LENGTH] = "";
+    int county_district = 0, previous_county_district = 0;
 
-    for (int i = 0; i < from_length; i++) {
-        to[i] = from[i];
-    }
-}
-
-int compare_strings(const char *a, const char *b, int length) {
-    for (int i = 0; i < COUNTY_NAME_LENGTH; i++) {
-        if (a[i] != b[i]) {
-            return 0;
+    //loop through file until end
+    while (feof(raw_file) == false) {
+        //Scan line, county_name and county_district
+        fscanf(raw_file, "%[^\t] \t %i \t %*s \t %*i\n", &county_name, &county_district);
+        // if either county_name or county_district is different
+        if (strcmp(county_name, previous_county_name) != 0 || county_district != previous_county_district) {
+            //Count 1 up and insert county_name and county_district into previous_county_name and previous_county_district
+            count++;
+            strcpy(previous_county_name, county_name);
+            previous_county_district = county_district;
         }
     }
-    return 1;
+    return count;
 }
+
+
 
