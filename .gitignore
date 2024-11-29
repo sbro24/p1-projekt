@@ -62,6 +62,7 @@ dkms.conf
 **/*.cbp
 **/CMakeScripts
 **/compile_commands.json
+**/.idea
 
 include/divisible/*
 
