@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <header.h>
 
 // Numbers are from 2022 currently (wikipedia)
@@ -41,6 +42,14 @@ typedef struct {
     double other_seat_percentage;
 } total_percentages_t;
 
+typedef struct {
+    double dem_difference_squared;
+    double rep_difference_squared;
+    double other_difference_squared;
+    double half_of_sum_of_difference_squared;
+    double gallagher_index;
+} gallagher_index_t;
+
 // Function prototypes
 vote_percentage_t calculate_percentages(district_t district);
 
@@ -55,6 +64,10 @@ seats_t calculate_seats(district_t districts[], int number_of_districts);
 total_percentages_t calculate_total_percentages(seats_t seats, total_votes_t total_votes, int number_of_districts);
 
 void print_total_results(total_percentages_t total_percentages, total_percentages_t seat_percentage, seats_t seats);
+
+gallagher_index_t calculate_gallagher_index(total_percentages_t total_percentages);
+
+void print_gallagher_index(gallagher_index_t gallagher_index);
 
 /*------------------------------------------------------------------------------------------------------------------*/
 // Functions
@@ -153,11 +166,26 @@ void print_total_results(total_percentages_t total_percentages, total_percentage
     printf("\n");
 }
 
-/*
-void calculate_gallagher_index(vote_percentage_t total_vote_percentage, seat_percentage, int dem_seats, int rep_seats, int other_seats) {
 
+gallagher_index_t calculate_gallagher_index(total_percentages_t percentages) {
+    gallagher_index_t gallagher_index;
+
+    // Calculate the difference in percentages of votes and seats, then squared
+    gallagher_index.dem_difference_squared = pow((percentages.total_dem_vote_percentage - percentages.dem_seat_percentage),2);
+    gallagher_index.rep_difference_squared = pow((percentages.total_rep_vote_percentage - percentages.rep_seat_percentage),2);
+    gallagher_index.other_difference_squared = pow((percentages.total_other_vote_percentage - percentages.other_seat_percentage),2);
+
+    // Calculate the sum of the difference squared
+    gallagher_index.half_of_sum_of_difference_squared = (gallagher_index.dem_difference_squared + gallagher_index.rep_difference_squared + gallagher_index.other_difference_squared) / 2;
+
+    gallagher_index.gallagher_index = sqrt(gallagher_index.half_of_sum_of_difference_squared);
+
+    return gallagher_index;
 }
-*/
+
+void print_gallagher_index(gallagher_index_t gallagher_index) {
+    printf("Gallagher Index of North Carolina: %lf\n", gallagher_index.gallagher_index);
+}
 
 int main(void) {
     // Numbers are from 2022 currently (wikipedia)
@@ -202,7 +230,9 @@ int main(void) {
     total_percentages_t total_percentages = calculate_total_percentages(seats, total_votes, number_of_districts);
 
     // Print results
-     print_total_results(total_percentages, total_percentages, seats);
+    print_total_results(total_percentages, total_percentages, seats);
+
+    print_gallagher_index(calculate_gallagher_index(total_percentages));
 
   return 0;
 }
