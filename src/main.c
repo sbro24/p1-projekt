@@ -3,6 +3,6 @@
 
 int main(void) {
     printf("Fucking cLion AAAAAAAAAAAAAAAAAAAAAAAAAA!\n");
-    test();
+    settings();
     return 0;
 }
