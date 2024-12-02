@@ -196,7 +196,7 @@ int main(void) {
 
     // Calculate seats
     seats_t seats = calculate_seats(districts, number_of_districts);
-
+    
     // Calculate percentages of votes and seats
 
     total_percentages_t total_percentages = calculate_total_percentages(seats, total_votes, number_of_districts);
