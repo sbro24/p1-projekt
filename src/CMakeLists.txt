@@ -8,7 +8,6 @@ target_include_directories(lib PUBLIC .)
 
 # We create an executable to run the game
 add_executable(p1_projekt main.c
-        settings.c
         header.h)
 
 # We link our library to the program executable, so the executable can access the functions in the library.
