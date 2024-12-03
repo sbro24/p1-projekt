@@ -27,3 +27,5 @@ target_link_libraries(graph_test lib)
 add_executable(proportionality_test project_test/calculate_proportionality.c)
 # We link our library to the program executable, so the executable can access the functions in the library.
 target_link_libraries(proportionality_test lib)
+
+add_subdirectory(eval_map)
