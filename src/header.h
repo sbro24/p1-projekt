@@ -1,11 +1,17 @@
 #pragma once
 
+#define FILE_COUNTIES "path.csv"
+#define FILE_GRID "path.csv"
+#define FILE_GRAPH "path.csv"
+#define FILE_POPULATION "path.csv"
+
 #define MAX_NUMBER_OF_PARTIES 10
 #define MAX_NUMBER_OF_DISTRICTS 20
 #define MAX_NUMBER_OF_COUNTIES 200
 
 #define MAX_GRID_SIZE_X 300
 #define MAX_GRID_SIZE_Y 150
+
 
 
 //district struct
@@ -22,4 +28,4 @@ typedef struct {
     int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
 } state_t;
 
-void construct_state(void);
+state_t construct_state(void);
