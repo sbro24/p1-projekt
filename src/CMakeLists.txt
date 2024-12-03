@@ -2,6 +2,8 @@
 add_library(lib
         input/test.c
         construct_state/construct_state.c
+        construct_state/construct_counties.c
+        construct_state/construct_state_header.h
 )
 
 # Make header files in the current folder available for #include

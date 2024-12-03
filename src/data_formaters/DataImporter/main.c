@@ -10,7 +10,7 @@ typedef struct {
     int longestLine;
 } filesize;
 
-FILE *open_file(const char *file_name, char mode);
+
 filesize ScanFile(FILE *file);  // https://stackoverflow.com/questions/12733105/c-function-that-counts-lines-in-file/70708991#70708991 by Mike Siomkin
 int **ConvertToInt(char **array, int rows, int columns);
 void Free2dArrayINT(int **array, int rows);
@@ -129,15 +129,7 @@ void Print2dArrayCHAR(char **array, int rows, int columns){
     }
 }
 
-// opens file with error handling
-FILE *open_file(const char *file_name, char mode){
-    FILE *file = fopen(FILE_NAME, "r");
-    if (file == NULL) {
-        printf("File not found\n");
-        exit(-1);
-    }
-    return file;
-}
+
 
 // allocates and returns 2d char array
 char **Allocate2dCHARarray(int rows, int columns){
