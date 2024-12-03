@@ -48,8 +48,8 @@ int main(void) {
 
 double calc_dist (coordinate* coordinate_point, double center_x, double center_y) {
 
-    double dist_x = (double) coordinate_point[1].x - center_x;
-    double dist_y = (double) coordinate_point[1].y - center_y;
+    double dist_x = (double) coordinate_point[0].x - center_x;
+    double dist_y = (double) coordinate_point[0].y - center_y;
     printf("Dist x: %lf", dist_x);
     printf("Dist y: %lf", dist_y);
 
