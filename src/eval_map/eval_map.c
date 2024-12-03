@@ -94,7 +94,6 @@ void print_district (int district[10][10]) {
 }
 
 
-
 double eval_shape(int count, coordinate coordinates[count]) {
 
     double  center_x = 0,
@@ -125,7 +124,6 @@ double calc_avg_dist(int count, coordinate coordinates[count], double center_x, 
     for (int i = 0; i < count; i++) {
         coordinate coordinate_point = {coordinates[i].x, coordinates[i].y};
         dist += calc_dist (&coordinate_point, center_x, center_y);
-        printf("distance akk [%d]: %lf\n", i, dist);
     }
 
     return dist/count;
@@ -137,7 +135,6 @@ double calc_dist (coordinate* coordinate_point, double center_x, double center_y
     double dist_y = (double) coordinate_point[0].y - center_y;
 
     double dist = sqrt(dist_x*dist_x + dist_y*dist_y);
-    printf("distance: %lf\n", dist);
 
     return dist;
 }
@@ -152,7 +149,7 @@ double eval_fill(int count, coordinate coordinates[count]) {
 }
 
 double calc_radius (int count) {
-    return sqrt(count / (2 * M_PI));
+    return sqrt(count / (M_PI));
 }
 
 void check_coordinate(int count, coordinate coordinates[count], double radius) {
