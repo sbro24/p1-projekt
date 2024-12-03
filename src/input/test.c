@@ -1,5 +1,8 @@
+#include "header.h"
 #include <stdio.h>
 
+
 void test(void) {
-    printf("Fucking Test AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
+    int a = 2;
+    printf("test: %d", a);
 }
