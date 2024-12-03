@@ -3,65 +3,56 @@
 #include <string.h>
 
 #define FILE_NAME "test.txt"
-#define PACKET_BUF_SIZE 1048576
-#define DELIMITER '\n'
+#define PACKET_BUFFER_SIZE 1048576
 
 typedef struct {
     int lineCount;
     int longestLine;
 } filesize;
 
-filesize ScanFile(FILE* file);  // https://stackoverflow.com/questions/12733105/c-function-that-counts-lines-in-file/70708991#70708991 by Mike Siomkin
-int** ConvertToInt(char **array, int rows, int columns);
-void Free2dArrayINT(int** arr, int rows);
-void Free2dArrayCHAR(char** arr, int rows);
+FILE *open_file(const char *file_name, char mode);
+filesize ScanFile(FILE *file);  // https://stackoverflow.com/questions/12733105/c-function-that-counts-lines-in-file/70708991#70708991 by Mike Siomkin
+int **ConvertToInt(char **array, int rows, int columns);
+void Free2dArrayINT(int **array, int rows);
+void Free2dArrayCHAR(char **array, int rows);
+void Print2dArrayINT(int **array, int rows, int columns);
+void Print2dArrayCHAR(char **array, int rows, int columns);
+char **Allocate2dCHARarray(int rows, int columns);
+void ReadFileDataInto2dCHARarray(FILE *file, char **array, int rows, int columns, char delimiter);
 
+// Unit test
 int main(void) {
-    FILE *file = fopen(FILE_NAME, "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return -1;
-    }
+
+    FILE *file = open_file(FILE_NAME, 'r');
     filesize f = ScanFile(file);
-    char** dataStruct = malloc(f.lineCount * sizeof(char*));
-    for (int i = 0; i < f.lineCount; i++) {
-        dataStruct[i] = malloc((f.longestLine + 1) * sizeof(char));
-    }
-    for (int i = 0; i < f.lineCount; i++){
-            fgets(dataStruct[i], f.longestLine+1, file);
-            char *delimiterPtr = strchr(dataStruct[i], DELIMITER);
-            if (delimiterPtr) {
-                *delimiterPtr = '\0';
-            }
-        }
+    char **dataStruct = Allocate2dCHARarray(f.lineCount, f.longestLine);
+    ReadFileDataInto2dCHARarray(file, dataStruct, f.lineCount, f.longestLine, '\n');
     fclose(file);
-    int** resultArray = ConvertToInt(dataStruct,f.lineCount,f.longestLine);
-    for (int i = 0; i < f.lineCount; i++) {
-        for (int j = 0; j < f.longestLine; j++) {
-            printf("%d ",resultArray[i][j]);
-        }
-    }
+    int **resultArray = ConvertToInt(dataStruct,f.lineCount,f.longestLine);
+    Print2dArrayCHAR(dataStruct,f.lineCount,f.longestLine);
     Free2dArrayCHAR(dataStruct,f.lineCount);
     Free2dArrayINT(resultArray,f.lineCount);
 
     return 0;
 }
 
-filesize ScanFile(FILE* file) {
+// Iterates through the file, counting for each line and for each character
+// Storing and returning the amount of lines and the longest counted line
+filesize ScanFile(FILE *file) {
     filesize f;
     f.lineCount = 0;
     f.longestLine = 0;
-    char buf[PACKET_BUF_SIZE];
+    char buffer[PACKET_BUFFER_SIZE];
     int charCount = 0;
     for(;;) {
-        size_t res = fread(buf, 1, PACKET_BUF_SIZE, file);
+        size_t result = fread(buffer, 1, PACKET_BUFFER_SIZE, file);
         if (ferror(file)) {
             printf("Error reading file");
             exit(-1);
         }
-        for(int i = 0; i < res; i++) {
+        for(int i = 0; i < result; i++) {
             charCount++;
-            if (buf[i] == '\n') {
+            if (buffer[i] == '\n') {
                 f.lineCount++;
                 if (charCount >= f.longestLine) {
                     f.longestLine = charCount;
@@ -76,8 +67,9 @@ filesize ScanFile(FILE* file) {
     return f;
 }
 
-int** ConvertToInt(char **array, int rows, int columns){
-    int** result = malloc(rows * sizeof(int*));
+// Takes 2d Char array, copies values into int array as int, returns resulting int array
+int **ConvertToInt(char **array, int rows, int columns){
+    int **result = malloc(rows * sizeof(int*));
     for (int i = 0; i < rows; i++) {
         result[i] = (int*)malloc(columns * sizeof(int));
     }
@@ -91,19 +83,78 @@ int** ConvertToInt(char **array, int rows, int columns){
     return result;
 };
 
-void Free2dArrayINT(int** arr, int rows) {
+// Frees malloc on 2d int array
+void Free2dArrayINT(int **array, int rows) {
     for (int i = 0; i < rows; i++) {
-        free(arr[i]);
+        free(array[i]);
     }
-    free(arr);
+    free(array);
 }
 
-void Free2dArrayCHAR(char** arr, int rows) {
+// Frees malloc on 2d char array
+void Free2dArrayCHAR(char **array, int rows) {
     for (int i = 0; i < rows; i++) {
-        free(arr[i]);
+        free(array[i]);
     }
-    free(arr);
+    free(array);
 }
 
+// Prints 2d int array (as colored spaces, 1 = green, 2 = blue)
+void Print2dArrayINT(int **array, int rows, int columns){
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (array[i][j] == 1) {
+                printf("\033[42m \033[0m");
+            }
+            if (array[i][j] == 0) {
+                printf("\033[44m \033[0m");
+            }
+        }
+        printf("\n");
+    }
+}
 
+// Prints 2d char array (as colored spaces, 1 = green, 2 = blue)
+void Print2dArrayCHAR(char **array, int rows, int columns){
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (array[i][j] == '1') {
+                printf("\033[42m \033[0m");
+            }
+            if (array[i][j] == '0') {
+                printf("\033[44m \033[0m");
+            }
+        }
+        printf("\n");
+    }
+}
 
+// opens file with error handling
+FILE *open_file(const char *file_name, char mode){
+    FILE *file = fopen(FILE_NAME, "r");
+    if (file == NULL) {
+        printf("File not found\n");
+        exit(-1);
+    }
+    return file;
+}
+
+// allocates and returns 2d char array
+char **Allocate2dCHARarray(int rows, int columns){
+    char **charArray2d = malloc(rows * sizeof(char*));
+    for (int i = 0; i < rows; i++) {
+        charArray2d[i] = malloc((columns + 1) * sizeof(char));
+    }
+    return charArray2d;
+}
+
+// Reads contents of a file into 2d char array
+void ReadFileDataInto2dCHARarray(FILE *file, char **array, int rows, int columns, char delimiter){
+    for (int i = 0; i < rows; i++){
+        fgets(array[i], columns+1, file);
+        char *delimiterPtr = strchr(array[i], delimiter);
+        if (delimiterPtr) {
+            *delimiterPtr = '\0';
+        }
+    }
+}
