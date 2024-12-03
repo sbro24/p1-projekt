@@ -2,8 +2,11 @@
 #include "header.h"
 
 
-void construct_state(void) {
+state_t construct_state(void) {
+    state_t state;
+
 
 
     printf("Fucking construct_state AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
+    return state
 }

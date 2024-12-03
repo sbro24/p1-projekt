@@ -3,11 +3,9 @@
 
 
 int main(void) {
-
-
-    construct_state();
     printf("Fucking cLion AAAAAAAAAAAAAAAAAAAAAAAAAA!\n");
 
+    state_t state = construct_state();
 
 
 
