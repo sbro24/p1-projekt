@@ -1,6 +1,7 @@
 #pragma once
 
-#define FILE_COUNTIES "path.csv"
+#define INPUT_DIRECTORY "input_files"
+#define FILE_COUNTIES "us_house_north_carolina_results_2024.csv"
 #define FILE_GRID "path.csv"
 #define FILE_GRAPH "path.csv"
 #define FILE_POPULATION "path.csv"
