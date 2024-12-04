@@ -14,10 +14,14 @@ void construct_counties(void) {
     char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
     get_unique_parties(file, parties);
 
-    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
-        printf("%s\n", parties[i]);
+    //Count number of parties
+    int number_of_parties = 0;
+    for (int i = 0; i < sizeof(parties) / sizeof(parties[0]); i++) {
+        if (strlen(parties[i]) == 0) continue;
+        number_of_parties++;
     }
 
+    printf("Number of parties: %d\n", number_of_parties);
 
 
 
