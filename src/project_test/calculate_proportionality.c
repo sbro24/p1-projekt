@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-
-// Numbers are from 2022 currently (wikipedia)
+#include <stdbool.h>
 
 //Structs
+
 /*
 typedef struct  {
     int district_number;
@@ -230,6 +229,40 @@ void calculate_proportionality(void) {
     // Numbers are from 2012 currently (wikipedia)
     // Implement: Show what a proportional result of seats would be.
     // Implement: Ask the user for what they want to research (votes, percentages, seats, districts etc.)
+    char data, specific;
+
+
+    bool valid_input = false;
+    while (!valid_input) {
+        printf("Do you want specific or all data? (specific = s, all = a)\n");
+        scanf(" %c", &data);
+
+        if (data == 'a' || data == 'A' ||
+            data == 's' || data == 'S') {
+            valid_input = true;
+        } else {
+            printf("Wrong input, try again)\n;");
+        }
+    }
+    if (data == 's' || data == 'S') {
+        bool valid_specific = false;
+        while (!valid_specific) {
+            printf("What data would you like?\n");
+            printf("(District data = d)\n");
+            printf("(Total results = t)\n");
+            printf("(Gallagher index = i)\n");
+            scanf(" %c", &specific);
+
+            if (specific == 'd' || specific == 'D' ||
+                specific == 't' || specific == 'T' ||
+                specific == 'i' || specific == 'I') {
+                valid_specific = true;
+            } else {
+                printf("Wrong input, try again)\n;");
+            }
+        }
+    }
+
     district_t districts[] = {
         {1, 338066, 254644, 77288, 6134},
         {2, 311397, 128973, 174066, 8358},
@@ -247,27 +280,40 @@ void calculate_proportionality(void) {
     };
     int number_of_districts = sizeof(districts) / sizeof(districts[0]);
 
-    for (int i = 0; i < number_of_districts; i++) {
-        vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i]);
-        print_district_votes(districts[i]);
-        print_district_vote_percentages(vote_results);
+        // Calculate total votes
+        total_votes_t total_votes = calculate_total_votes(districts, number_of_districts);
+        // Calculate seats
+        seats_t seats = calculate_seats(districts, number_of_districts);
+        // Calculate percentages of votes and seats
+        total_percentages_t total_percentages = calculate_total_percentages(seats, total_votes, number_of_districts);
+
+    // User wants all data
+    if (data == 'a' || data == 'A') {
+        for (int i = 0; i < number_of_districts; i++) {
+            //Calculate and print all the districts
+            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i]);
+            print_district_votes(districts[i]);
+            print_district_vote_percentages(vote_results);
+
+            print_total_results(total_percentages, total_percentages, seats);
+
+            print_gallagher_index(calculate_gallagher_index(total_percentages));
+        }
+    } else if (specific == 'd' || specific == 'D' ) { // User wants specifically district data
+        for (int i = 0; i < number_of_districts; i++) {
+            //Calculate and print all the districts
+            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i]);
+            print_district_votes(districts[i]);
+            print_district_vote_percentages(vote_results);
+        }
+    } else if (specific == 't' || specific == 'T') { // User wants specifically the total results
+
+        // Print results
+        print_total_results(total_percentages, total_percentages, seats);
+    } else if (specific == 'i' || specific == 'I') {
+        // print gallagher index
+        print_gallagher_index(calculate_gallagher_index(total_percentages));
     }
-
-
-    // Calculate total votes
-    total_votes_t total_votes = calculate_total_votes(districts, number_of_districts);
-
-    // Calculate seats
-    seats_t seats = calculate_seats(districts, number_of_districts);
-
-    // Calculate percentages of votes and seats
-    total_percentages_t total_percentages = calculate_total_percentages(seats, total_votes, number_of_districts);
-
-    // Print results
-    print_total_results(total_percentages, total_percentages, seats);
-
-    // print gallagher index
-    print_gallagher_index(calculate_gallagher_index(total_percentages));
 }
 
 /*
