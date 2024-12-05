@@ -26,6 +26,7 @@ typedef struct {
 typedef struct {
     district_t districts[MAX_NUMBER_OF_DISTRICTS];
     char parties[MAX_NUMBER_OF_PARTIES][4];
+    int number_of_parties;
     int number_of_seats[MAX_NUMBER_OF_PARTIES];
     int total_votes[MAX_NUMBER_OF_PARTIES];
     int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
