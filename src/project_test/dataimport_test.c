@@ -2,7 +2,7 @@
 #include "dataimporter.h"
 #include "construct_state_header.h"
 
-int main(void) {
+int dataimport_test(void) {
 
     FILE *file = open_file("FILE_NAME", 'r');
     filesize f = ScanFile(file);
