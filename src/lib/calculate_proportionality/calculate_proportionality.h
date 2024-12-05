@@ -1,0 +1,6 @@
+#ifndef CALCULATE_PROPORTIONALITY_H
+#define CALCULATE_PROPORTIONALITY_H
+
+// write prototypes here
+
+#endif //CALCULATE_PROPORTIONALITY_H
