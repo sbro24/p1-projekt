@@ -11,8 +11,8 @@
 #define MAX_NUMBER_OF_COUNTIES 200
 #define MAX_NUMBER_OF_NEIGHBORS 10
 
-#define MAX_GRID_SIZE_X 300
-#define MAX_GRID_SIZE_Y 150
+#define MAX_GRID_SIZE_X 200
+#define MAX_GRID_SIZE_Y 100
 
 #define COUNTY_NAME_LENGTH 30
 
@@ -25,8 +25,6 @@ typedef struct {
 //state struct
 typedef struct {
     district_t districts[MAX_NUMBER_OF_DISTRICTS];
-    char parties[MAX_NUMBER_OF_PARTIES][4];
-    int number_of_parties;
     int number_of_seats[MAX_NUMBER_OF_PARTIES];
     int total_votes[MAX_NUMBER_OF_PARTIES];
     int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
