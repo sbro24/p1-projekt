@@ -9,7 +9,14 @@
 state_t construct_state(void) {
     state_t state;
 
-    construct_counties();
+    construct_party_array(state.parties);
+    count_parties(state.parties);
+
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
+        printf("%s\n", state.parties[i]);
+    }
+
+    //construct_counties();
 
     printf("Fucking construct_state AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
     return state;
