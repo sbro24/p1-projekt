@@ -39,4 +39,5 @@ typedef struct {
 } county_t;
 
 state_t construct_state(void);
+double eval_map();
 void error_handling(char *message);
