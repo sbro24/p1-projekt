@@ -18,8 +18,8 @@ int main(void) {
 
     //state_t state = construct_state();
 
-    double evaluation_map = eval_map();
-    printf("Evaluation of map form main: %lf\n", evaluation_map);
+    //double evaluation_map = eval_map();
+    //printf("Evaluation of map form main: %lf\n", evaluation_map);
 
     return 0;
 }
