@@ -23,10 +23,11 @@ target_link_libraries(p1_projekt
 )
 
 # Unit test executables
+add_executable(dataimport_test project_test/dataimport_test.c)
 #add_executable(test1 project_test/test1.c)
 #add_executable(test2 project_test/test2.c)
-#add_executable(test3 project_test/test3.c)
 
 # Unit test library links.
+target_link_libraries(dataimport_test dataimporter_lib construct_state_lib)
+#target_link_libraries(test1 lib)
 #target_link_libraries(test2 lib)
-#target_link_libraries(test3 lib)
