@@ -26,8 +26,7 @@ double eval_shape(int count, coordinate coordinates[count]);
     double calc_avg_dist(int count, coordinate coordinates[count], double center_x, double center_y);
 
 
-int
-main(void) {
+double eval_map(void) {
 
     int district[10][10];
     int count = 0; // To store the number of coordinates generated
@@ -47,7 +46,7 @@ main(void) {
 
     free(coordinates);
 
-    return 0;
+    return evaluation_map;
 }
 
 
