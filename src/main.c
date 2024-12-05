@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int main(void) {
@@ -10,4 +11,10 @@ int main(void) {
 
 
     return 0;
+}
+
+void error_handling(char *message) {
+    printf("%s (press ENTER to end prosess)", message);
+    getchar();
+    exit(EXIT_FAILURE);
 }
