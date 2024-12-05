@@ -40,3 +40,4 @@ typedef struct {
 } county_t;
 
 state_t construct_state(void);
+void error_handling(char *message);

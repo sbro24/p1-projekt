@@ -25,9 +25,9 @@ FILE *open_file(const char *file_name, const char *mode){
     strcat(path, file_name);
     FILE *file = fopen(path, mode);
     if (file == NULL) {
-        printf("%s not found (press ENTER to close)", path);
-        getchar();
-        exit(EXIT_FAILURE);
+        char error_message[256] = "Couldn't open ";
+        strcat(error_message, path);
+        error_handling(error_message);
     }
     return file;
 }
