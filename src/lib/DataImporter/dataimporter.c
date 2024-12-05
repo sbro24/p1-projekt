@@ -1,26 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define FILE_NAME "test.txt"
-#define PACKET_BUFFER_SIZE 1048576
-
-typedef struct {
-    int lineCount;
-    int longestLine;
-} filesize;
+#include "dataimporter.h"
 
 
-filesize ScanFile(FILE *file);  // https://stackoverflow.com/questions/12733105/c-function-that-counts-lines-in-file/70708991#70708991 by Mike Siomkin
-int **ConvertToInt(char **array, int rows, int columns);
-void Free2dArrayINT(int **array, int rows);
-void Free2dArrayCHAR(char **array, int rows);
-void Print2dArrayINT(int **array, int rows, int columns);
-void Print2dArrayCHAR(char **array, int rows, int columns);
-char **Allocate2dCHARarray(int rows, int columns);
-void ReadFileDataInto2dCHARarray(FILE *file, char **array, int rows, int columns, char delimiter);
 
-// Unit test
+/*
+// example use
 int main(void) {
 
     FILE *file = open_file(FILE_NAME, 'r');
@@ -35,6 +21,7 @@ int main(void) {
 
     return 0;
 }
+*/
 
 // Iterates through the file, counting for each line and for each character
 // Storing and returning the amount of lines and the longest counted line

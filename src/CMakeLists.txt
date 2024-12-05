@@ -1,34 +1,35 @@
-# We create an executable to run the program
-add_library(lib
-        input/test.c
-        construct_state/construct_state.c
-        construct_state/construct_counties.c
-        construct_state/construct_state_header.h
-)
+# Add all libraries
+
+#add library directories
+add_subdirectory(lib)
 
 # Make header files in the current folder available for #include
-target_include_directories(lib PUBLIC .)
+target_include_directories(calculate_proportionality_lib PUBLIC .)
+target_include_directories(construct_state_lib PUBLIC .)
+target_include_directories(dataimporter_lib PUBLIC .)
+target_include_directories(eval_map_lib PUBLIC .)
 
-# We create an executable to run the game
+# Main executable
 add_executable(p1_projekt main.c
         header.h)
 
-# We link our library to the program executable, so the executable can access the functions in the library.
-target_link_libraries(p1_projekt lib)
+# Main library link
+target_link_libraries(p1_projekt
+        calculate_proportionality_lib
+        construct_state_lib
+        dataimporter_lib
+        eval_map_lib
+)
 
-# Data formaters executables
-add_executable(data_formater_north_carolina data_formaters/north_carolina/north_carolina.c)
-# We link our library to the program executable, so the executable can access the functions in the library.
-target_link_libraries(data_formater_north_carolina lib)
 
-# Data formaters executables
-add_executable(graph_test project_test/graph_test.c)
-# We link our library to the program executable, so the executable can access the functions in the library.
-target_link_libraries(graph_test lib)
 
-# Data formaters executables
-add_executable(proportionality_test project_test/calculate_proportionality.c)
-# We link our library to the program executable, so the executable can access the functions in the library.
-target_link_libraries(proportionality_test lib)
 
-add_subdirectory(eval_map)
+# Unit test executables
+#add_executable(test1 project_test/test1.c)
+#add_executable(test2 project_test/test2.c)
+#add_executable(test3 project_test/test3.c)
+
+# Unit test library links.
+#target_link_libraries(test1 lib)
+#target_link_libraries(test2 lib)
+#target_link_libraries(test3 lib)

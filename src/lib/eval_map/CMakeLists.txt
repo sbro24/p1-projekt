@@ -1,1 +1,4 @@
-add_executable(EVALUATE_MAP eval_map.c)
+add_library(eval_map_lib
+        eval_map.c
+        eval_map.h
+)

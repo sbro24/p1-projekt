@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.29)
-project(DataImporter C)
-
-set(CMAKE_C_STANDARD 11)
-
-add_executable(DataImporter main.c)
+add_library(dataimporter_lib
+        dataimporter.c
+        dataimporter.h)
