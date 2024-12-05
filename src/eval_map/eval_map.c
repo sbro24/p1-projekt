@@ -52,7 +52,7 @@ main(void) {
 
 
 void read_district (int district[10][10]) {
-    int temp [10][10] = {{1,1,1,1,1,1,1,1,1,1},
+    int temp_1 [10][10] = {{1,1,1,1,1,1,1,1,1,1},
                         {0,1,1,1,1,1,1,0,0,0},
                         {0,0,1,1,1,1,1,0,0,0},
                         {0,1,1,1,1,1,1,0,0,0},
@@ -63,9 +63,31 @@ void read_district (int district[10][10]) {
                         {0,0,0,1,1,1,0,0,0,0},
                         {0,0,0,0,1,0,0,0,0,0}};
 
+    int temp_2 [10][10] = { {0,0,0,1,1,1,0,0,0,0},
+                            {0,1,1,1,1,1,1,0,0,0},
+                            {0,0,1,1,1,1,1,0,0,0},
+                            {0,1,1,1,1,1,1,0,0,0},
+                            {0,0,1,1,1,1,1,1,0,0},
+                            {0,0,1,1,1,1,1,1,1,1},
+                            {0,0,1,1,1,1,1,1,1,0},
+                            {0,0,0,1,1,1,1,0,0,0},
+                            {0,0,0,1,1,1,0,0,0,0},
+                            {0,0,0,0,1,0,0,0,0,0}};
+
+    int temp_3 [10][10] = { {0,0,0,0,1,1,0,0,0,0},
+                            {0,0,0,1,1,1,1,0,0,0},
+                            {0,0,1,1,1,1,1,1,0,0},
+                            {0,1,1,1,1,1,1,1,1,0},
+                            {1,1,1,1,1,1,1,1,1,1},
+                            {1,1,1,1,1,1,1,1,1,1},
+                            {0,1,1,1,1,1,1,1,1,0},
+                            {0,0,1,1,1,1,1,1,0,0},
+                            {0,0,0,1,1,1,1,0,0,0},
+                            {0,0,0,0,1,1,0,0,0,0}};
+
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
-            district[i][j] = temp[i][j];
+            district[i][j] = temp_3[i][j];
         }
     }
 }
@@ -95,17 +117,20 @@ coordinate* generate_coordinates(int rows, int cols, int district[rows][cols], i
 }
 
 void print_district (int district[10][10]) {
+
+    printf("Map: \n");
+    printf("___________________________________\n");
     for (int i = 0; i<10; i++) {
         for(int j = 0; j<10; j++) {
             if (district[i][j] == 1 ) {
-                printf("%d", district[i][j]);
+                printf(" %d ", district[i][j]);
             } else {
-                printf(" ");
+                printf("   ");
             }
         }
         printf("\n");
     }
-    printf("_______________\n");
+    printf("___________________________________\n");
 }
 
 double eval_shape(int count, coordinate coordinates[count]) {
@@ -141,7 +166,7 @@ double calc_avg_dist(int count, coordinate coordinates[count], double center_x, 
     }
 
     double avg_dist = dist/count;
-    double optimal_dist = calc_radius(count/2);
+    double optimal_dist = (calc_radius(count)*2)/3;
 
     return optimal_dist/avg_dist*100;
 }
@@ -192,13 +217,3 @@ double check_coordinate(int count, coordinate coordinates[count], double radius)
     return (double) in_cirkle/(out_cirkle+in_cirkle)*100;
 
 }
-
-
-
-
-
-
-
-
-
-
