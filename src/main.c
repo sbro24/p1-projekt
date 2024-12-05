@@ -10,7 +10,11 @@ int main(void) {
     construct_party_array(parties);
     int number_of_parties = count_parties(parties);
 
-    //county_t counties[MAX_NUMBER_OF_COUNTIES] = construct_counties();
+    county_t counties[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
+    construct_county_array(counties, parties, number_of_parties);
+    int number_of_counties = count_counties_in_struct(counties);
+
+    printf("Number of parties: %d\n", number_of_counties);
 
     state_t state = construct_state();
 

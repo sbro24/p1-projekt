@@ -1,14 +1,14 @@
 #pragma once
 
 #define INPUT_DIRECTORY "input_files"
-#define FILE_COUNTIES "us_house_north_carolina_results_2024.csv"
+#define FILE_COUNTIES "us_house_north_carolina_results_2024_index.txt"
 #define FILE_GRID "path.csv"
 #define FILE_GRAPH "path.csv"
 #define FILE_POPULATION "path.csv"
 
 #define MAX_NUMBER_OF_PARTIES 10
 #define MAX_NUMBER_OF_DISTRICTS 20
-#define MAX_NUMBER_OF_COUNTIES 200
+#define MAX_NUMBER_OF_COUNTIES 150
 #define MAX_NUMBER_OF_NEIGHBORS 10
 
 #define MAX_GRID_SIZE_X 200

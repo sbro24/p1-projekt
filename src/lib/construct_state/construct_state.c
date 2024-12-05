@@ -9,8 +9,8 @@
 state_t construct_state(void) {
     state_t state;
 
-
     printf("Fucking construct_state AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
+
     return state;
 }
 
@@ -31,4 +31,13 @@ FILE *open_file(const char *file_name, const char *mode){
         error_handling(error_message);
     }
     return file;
+}
+
+int count_counties_in_struct(county_t counties[MAX_NUMBER_OF_COUNTIES]) {
+    int number_of_counties = 0;
+    for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) {
+        if (strlen(counties[i].name) == 0) continue;
+        number_of_counties++;
+    }
+    return number_of_counties;
 }
