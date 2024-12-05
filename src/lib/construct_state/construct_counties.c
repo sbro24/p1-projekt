@@ -34,6 +34,7 @@ void get_unique_parties(FILE* file, char parties[MAX_NUMBER_OF_PARTIES][4]) {
     fscanf(file, "%*[^\n]\n");
 
     char scanned_party[4];
+
     char scanned_parties[MAX_NUMBER_OF_PARTIES][4] = {""};
 
     //loop through file until end
