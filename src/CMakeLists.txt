@@ -3,7 +3,7 @@
 include_directories(${CMAKE_SOURCE_DIR}/src)
 # add library directory
 add_subdirectory(lib)
-
+add_subdirectory(project_test)
 # Make header files in the current folder available for #include
 target_include_directories(calculate_proportionality_lib PUBLIC lib/calculate_proportionality)
 target_include_directories(construct_state_lib PUBLIC lib/construct_state)
@@ -22,16 +22,4 @@ target_link_libraries(p1_projekt
         eval_map_lib
 )
 
-# Unit test executables
-add_executable(dataimport_test project_test/dataimport_test.c)
-#add_executable(test1 project_test/test1.c)
-#add_executable(test2 project_test/test2.c)
 
-# Unit test library links.
-target_link_libraries(dataimport_test dataimporter_lib construct_state_lib)
-#target_link_libraries(test1 lib)
-#target_link_libraries(test2 lib)
-
-add_executable(Calculate_proportionality lib/calculate_proportionality/calculate_proportionality.c)
-
-target_link_libraries(calculate_proportionality_lib)
