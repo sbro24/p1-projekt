@@ -7,7 +7,7 @@
 
 
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties) {
-    state_t state;
+    state_t state_temp;
 
     county_t counties_copy[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
     for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) {
@@ -17,7 +17,7 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
         for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) counties_copy[i].votes[j] = counties[i].votes[j];
     }
 
-    int number_of_districts = count_districts(counties_copy);
+    //int number_of_districts = count_districts(counties_copy);
 
     int district_numbers[MAX_NUMBER_OF_DISTRICTS] = {0};
     get_district_numbers(district_numbers, counties);
@@ -29,11 +29,38 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     sum_district_votes(district_votes, district_numbers, counties);
     //for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) printf("district_votes[%d] = { %d, %d, %d, %d, %d, %d }\n", i, district_votes[i][0], district_votes[i][1], district_votes[i][2], district_votes[i][3], district_votes[i][4], district_votes[i][5]);
 
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        state_temp.districts[i].district_number = district_numbers[i];
+        for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) state_temp.districts[i].votes[j] = district_votes[i][j];
+    }
 
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        int winner = find_winner(state_temp.districts[i].votes);
+        if (winner == -1) continue;
+        state_temp.number_of_seats[winner]++;
+    }
+
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
+        for (int j = 0; j < MAX_NUMBER_OF_DISTRICTS; j++) {
+            state_temp.total_votes[i] += state_temp.districts[j].votes[i];
+        }
+    }
 
     printf("Fucking construct_state AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
 
-    return state;
+    return state_temp;
+}
+
+int find_winner(int* votes) {
+    int biggest = 0;
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
+        if (biggest < votes[i]) biggest = votes[i];
+    }
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
+        if (biggest == 0) continue;
+        if (votes[i] == biggest) return i;
+    }
+    return -1;
 }
 
 void sum_district_votes(int district_votes[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES], int district_list[MAX_NUMBER_OF_DISTRICTS], county_t counties[MAX_NUMBER_OF_COUNTIES]) {
