@@ -10,6 +10,7 @@ typedef struct  {
     int dem_votes;
     int rep_votes;
     int other_votes;
+    int total_votes;
 } district_t;
 
 typedef struct {
@@ -22,7 +23,6 @@ typedef struct {
     int total_dem_votes;
     int total_rep_votes;
     int total_other_votes;
-    int total_district_votes;
     int total_state_votes;
 } total_votes_t;
 
@@ -50,9 +50,12 @@ typedef struct {
 } gallagher_index_t;
 
 // Function prototypes
-vote_percentage_t calculate_district_vote_percentages(district_t district, total_votes_t total_votes);
 
-void print_district_votes(district_t district, total_votes_t total_votes);
+district_t calculate_total_district_votes(district_t district);
+
+vote_percentage_t calculate_district_vote_percentages(district_t district);
+
+void print_district_votes(district_t district);
 
 void print_district_vote_percentages(vote_percentage_t vote_percentage);
 
@@ -73,55 +76,35 @@ void calculate_proportionality(void);
 /*------------------------------------------------------------------------------------------------------------------*/
 // Functions
 
-total_votes_t calculate_total_votes(district_t districts[], int number_of_districts) {
-    total_votes_t total_votes = {0};
+district_t calculate_total_district_votes(district_t district) {
 
-    for (int i = 0; i < number_of_districts; i++) {
-        total_votes.total_dem_votes += districts[i].dem_votes;
-        total_votes.total_rep_votes += districts[i].rep_votes;
-        total_votes.total_other_votes += districts[i].other_votes;
-        total_votes.total_state_votes += total_votes.total_district_votes;
-    }
-    return total_votes;
+    district.total_votes = district.dem_votes + district.rep_votes + district.other_votes;
+
+    return district;
 }
 
-vote_percentage_t calculate_district_vote_percentages(district_t district, total_votes_t total_votes) {
-    vote_percentage_t vote_percentage;
-
-    total_votes.total_district_votes = district.dem_votes + district.rep_votes + district.other_votes;
-
-    // Calculate the voting percentages
-    vote_percentage.dem_vote_percentage = 100.0 * district.dem_votes / total_votes.total_district_votes;
-    vote_percentage.rep_vote_percentage = 100.0 * district.rep_votes / total_votes.total_district_votes;
-    vote_percentage.other_vote_percentage = 100.0 * district.other_votes / total_votes.total_district_votes;
-
-    return vote_percentage;
-}
-/*
 vote_percentage_t calculate_district_vote_percentages(district_t district) {
     vote_percentage_t vote_percentage;
 
     // Calculate the voting percentages
-    vote_percentage.dem_vote_percentage = 100.0 * district.dem_votes / district.total_district_votes;
-    vote_percentage.rep_vote_percentage = 100.0 * district.rep_votes / district.total_district_votes;
-    vote_percentage.other_vote_percentage = 100.0 * district.other_votes / district.total_district_votes;
+    vote_percentage.dem_vote_percentage = 100.0 * district.dem_votes / district.total_votes;
+    vote_percentage.rep_vote_percentage = 100.0 * district.rep_votes / district.total_votes;
+    vote_percentage.other_vote_percentage = 100.0 * district.other_votes / district.total_votes;
 
     return vote_percentage;
 }
-*/
 
-void print_district_votes(district_t district, total_votes_t total_votes) {
+void print_district_votes(district_t district) {
     // Input the values from district
 
     printf("District %d:\n", district.district_number);
-    printf("District total votes: %d\n", district.dem_votes + district.rep_votes + district.other_votes);
+    printf("District total votes: %d\n", district.total_votes);
     printf("District votes for democrats: %d\n", district.dem_votes);
     printf("District votes for republicans: %d\n",district.rep_votes);
     printf("District votes for other parties: %d\n", district.other_votes);
     printf("\n");
 
 }
-
 
 void print_district_vote_percentages(vote_percentage_t vote_percentage) {
 
@@ -131,7 +114,6 @@ void print_district_vote_percentages(vote_percentage_t vote_percentage) {
     printf("\n");
 }
 
-/*
 total_votes_t calculate_total_votes(district_t districts[], int number_of_districts) {
     total_votes_t total_votes = {0};
 
@@ -139,11 +121,10 @@ total_votes_t calculate_total_votes(district_t districts[], int number_of_distri
         total_votes.total_dem_votes += districts[i].dem_votes;
         total_votes.total_rep_votes += districts[i].rep_votes;
         total_votes.total_other_votes += districts[i].other_votes;
-        total_votes.total_state_votes += districts[i].total_district_votes;
+        total_votes.total_state_votes += districts[i].dem_votes + districts[i].rep_votes + districts[i].other_votes;
     }
     return total_votes;
 }
-*/
 
 seats_t calculate_seats(district_t districts[], int number_of_districts) {
     seats_t seats = {0};
@@ -207,7 +188,8 @@ gallagher_index_t calculate_gallagher_index(total_percentages_t percentages) {
     gallagher_index.other_difference_squared = pow((percentages.total_other_vote_percentage - percentages.other_seat_percentage),2);
 
     // Calculate the sum of the difference squared
-    gallagher_index.half_of_sum_of_difference_squared = (gallagher_index.dem_difference_squared + gallagher_index.rep_difference_squared + gallagher_index.other_difference_squared) / 2;
+    gallagher_index.half_of_sum_of_difference_squared = (gallagher_index.dem_difference_squared +
+                                                        gallagher_index.rep_difference_squared + gallagher_index.other_difference_squared) / 2;
 
     gallagher_index.gallagher_index = sqrt(gallagher_index.half_of_sum_of_difference_squared);
 
@@ -224,7 +206,8 @@ void calculate_proportionality(void) {
     // Implement: Ask the user for what they want to research (votes, percentages, seats, districts etc.)
     char data, specific;
 
-
+    // Boolean product to run or break the while loop
+    // When true, it breaks out of the loop, therefore it starts as false
     bool valid_input = false;
     while (!valid_input) {
         printf("Do you want specific or all data? (specific = s, all = a)\n");
@@ -237,7 +220,7 @@ void calculate_proportionality(void) {
             printf("Wrong input, try again)\n;");
         }
     }
-    if (data == 's' || data == 'S') {
+    if (data == 's' || data == 'S') { // User picked a specific data
         bool valid_specific = false;
         while (!valid_specific) {
             printf("What data would you like?\n");
@@ -273,6 +256,7 @@ void calculate_proportionality(void) {
     };
     int number_of_districts = sizeof(districts) / sizeof(districts[0]);
 
+    // Calculate the universally needed data
         // Calculate total votes
         total_votes_t total_votes = calculate_total_votes(districts, number_of_districts);
         // Calculate seats
@@ -280,12 +264,13 @@ void calculate_proportionality(void) {
         // Calculate percentages of votes and seats
         total_percentages_t total_percentages = calculate_total_percentages(seats, total_votes, number_of_districts);
 
-    // User wants all data
-    if (data == 'a' || data == 'A') {
+
+    if (data == 'a' || data == 'A') { // User wants all data
         for (int i = 0; i < number_of_districts; i++) {
             //Calculate and print all the districts
-            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i], total_votes);
-            print_district_votes(districts[i], total_votes);
+            districts[i] = calculate_total_district_votes(districts[i]);
+            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i]);
+            print_district_votes(districts[i]);
             print_district_vote_percentages(vote_results);
 
             print_total_results(total_percentages, total_percentages, seats);
@@ -295,8 +280,9 @@ void calculate_proportionality(void) {
     } else if (specific == 'd' || specific == 'D' ) { // User wants specifically district data
         for (int i = 0; i < number_of_districts; i++) {
             //Calculate and print all the districts
-            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i], total_votes);
-            print_district_votes(districts[i], total_votes);
+            districts[i] = calculate_total_district_votes(districts[i]);
+            vote_percentage_t vote_results = calculate_district_vote_percentages(districts[i]);
+            print_district_votes(districts[i]);
             print_district_vote_percentages(vote_results);
         }
     } else if (specific == 't' || specific == 'T') { // User wants specifically the total results

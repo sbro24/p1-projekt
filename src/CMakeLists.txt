@@ -31,3 +31,7 @@ add_executable(dataimport_test project_test/dataimport_test.c)
 target_link_libraries(dataimport_test dataimporter_lib construct_state_lib)
 #target_link_libraries(test1 lib)
 #target_link_libraries(test2 lib)
+
+add_executable(Calculate_proportionality lib/calculate_proportionality/calculate_proportionality.c)
+
+target_link_libraries(calculate_proportionality_lib)
