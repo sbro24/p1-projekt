@@ -20,7 +20,7 @@ int main(void) {
     //double evaluation_map = eval_map();
     //printf("Evaluation of map form main: %lf\n", evaluation_map);
 
-    gallagher_index(state);
+    //gallagher_index(state);
 
     return 0;
 }
