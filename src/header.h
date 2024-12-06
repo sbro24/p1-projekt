@@ -38,6 +38,6 @@ typedef struct {
     int neighbors[MAX_NUMBER_OF_NEIGHBORS];
 } county_t;
 
-state_t construct_state(void);
+state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties);
 double eval_map();
 void error_handling(char *message);

@@ -14,9 +14,7 @@ int main(void) {
     construct_county_array(counties, parties, number_of_parties);
     int number_of_counties = count_counties_in_struct(counties);
 
-    printf("Number of parties: %d\n", number_of_counties);
-
-    //state_t state = construct_state();
+    state_t state = construct_state(counties, parties, number_of_parties);
 
     //double evaluation_map = eval_map();
     //printf("Evaluation of map form main: %lf\n", evaluation_map);
@@ -25,7 +23,7 @@ int main(void) {
 }
 
 void error_handling(char *message) {
-    printf("%s (press ENTER to end prosess)", message);
+    printf("%s (press ENTER to end process)", message);
     getchar();
     exit(EXIT_FAILURE);
 }
