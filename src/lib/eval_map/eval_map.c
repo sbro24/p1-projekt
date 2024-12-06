@@ -5,6 +5,8 @@
 
 double eval_map(void) {
 
+
+
     int district[10][10];
     int count = 0; // To store the number of coordinates generated
 
@@ -63,7 +65,7 @@ void read_district (int district[10][10]) {
 
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
-            district[i][j] = temp_2[i][j];
+            district[i][j] = temp_1[i][j];
         }
     }
 }

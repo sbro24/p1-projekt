@@ -1,8 +1,8 @@
+#include "lib/eval_map/eval_map.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <eval_map.h>
-
+#include "header.h"
 
 void test_calc_avg_dist() {
 
@@ -20,6 +20,7 @@ void test_calc_avg_dist() {
         test_coordinates[i].x = x_coords[i];
         test_coordinates[i].y = y_coords[i];
     }
+
 
     // Calculate the center
     double center_x = 0.0, center_y = 0.0;

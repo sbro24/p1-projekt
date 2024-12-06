@@ -40,4 +40,5 @@ typedef struct {
 
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties);
 double eval_map();
+void test_calc_avg_dist();
 void error_handling(char *message);
