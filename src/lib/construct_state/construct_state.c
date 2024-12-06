@@ -17,12 +17,18 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
         for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) counties_copy[i].votes[j] = counties[i].votes[j];
     }
 
+    int number_of_districts = count_districts(counties_copy);
+
+    int district_numbers[MAX_NUMBER_OF_DISTRICTS] = {0};
+    get_district_numbers(district_numbers, counties);
+
     char parties_copy[MAX_NUMBER_OF_PARTIES][4] = {""};
     for (int i = 0; i < number_of_parties; i++) strcpy(parties_copy[i], parties[i]);
 
-    //int parties_copy[MAX_NUMBER_OF_DISTRICTS];
+    int district_votes[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES] = {0};
+    sum_district_votes(district_votes, district_numbers, counties);
 
-    int number_of_districts = count_districts(counties_copy);
+
 
 
     printf("Fucking construct_state AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
@@ -30,7 +36,73 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     return state;
 }
 
+void sum_district_votes(int district_votes[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES], int district_list[MAX_NUMBER_OF_DISTRICTS], county_t counties[MAX_NUMBER_OF_COUNTIES]) {
+    int district_list_copy[MAX_NUMBER_OF_DISTRICTS] = {0};
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) district_list_copy[i] = district_list[i];
 
+    int votes_copy[MAX_NUMBER_OF_COUNTIES][MAX_NUMBER_OF_PARTIES] = {0};
+    for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) {
+        for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) votes_copy[i][j] = counties[i].votes[j];
+    }
+
+    int county_district_list_copy[MAX_NUMBER_OF_COUNTIES] = {0};
+    for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) county_district_list_copy[i] = counties[i].district;
+
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        if (district_list_copy == 0) continue;
+        for (int j = 0; j < MAX_NUMBER_OF_COUNTIES; j++) {
+            if (district_list_copy[i] == county_district_list_copy[j]) {
+                for (int k = 0; k < MAX_NUMBER_OF_PARTIES; k++) {
+                    district_votes[i][k] += votes_copy[j][k];
+                }
+            }
+        }
+    }
+
+
+    scanf("", &district_votes);
+
+
+
+
+
+
+    /*
+    int district_votes_copy[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES];
+
+    int district_list_copy[MAX_NUMBER_OF_DISTRICTS] = {0};
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) district_list_copy[i] = district_list[i];
+
+    int votes[MAX_NUMBER_OF_COUNTIES][MAX_NUMBER_OF_PARTIES] = {0};
+    for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) {
+        for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) votes[i][j] = counties[i].votes[j];
+    }
+
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        for (int j = 0; j < MAX_NUMBER_OF_COUNTIES; j++) {
+            if (district_list_copy[i] == counties[j].district) {
+                for (int k = 0; k < MAX_NUMBER_OF_PARTIES; k++) *district_votes_copy[i] += votes[j][k];
+            }
+        }
+    }
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) printf("district_votes_copy[%d] = %d\n", i, *district_votes_copy[i]);
+    */
+}
+
+void get_district_numbers(int district_numbers[MAX_NUMBER_OF_DISTRICTS], county_t counties[MAX_NUMBER_OF_COUNTIES]) {
+    int district_numbers_copy[MAX_NUMBER_OF_COUNTIES] = {0};
+    int counter = 0;
+    for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) district_numbers_copy[i] = counties[i].district;
+    for (int i = 1; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        for (int j = 0; j < MAX_NUMBER_OF_COUNTIES; j++) {
+            if (district_numbers_copy[j] == i) {
+                district_numbers[counter] = i;
+                counter++;
+                break;
+            }
+        }
+    }
+}
 
 int count_districts(county_t counties[MAX_NUMBER_OF_COUNTIES]) {
     int count = 0;
