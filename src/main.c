@@ -1,5 +1,6 @@
 #include "header.h"
 #include "construct_state_header.h"
+#include "calculate_proportionality.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,6 +19,8 @@ int main(void) {
 
     //double evaluation_map = eval_map();
     //printf("Evaluation of map form main: %lf\n", evaluation_map);
+
+    gallagher_index(state);
 
     return 0;
 }
