@@ -45,10 +45,6 @@ coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols],
 
     // Allocate memory for the coordinates (worst case: every element has a coordinate)
     coordinate_t* coordinates = malloc(rows * cols * sizeof(coordinate_t));
-    if (!coordinates) {
-        perror("Failed to allocate memory");
-        exit(EXIT_FAILURE);
-    }
 
     // Traverse the 2D array
     for (int i = 0; i < rows; i++) {
