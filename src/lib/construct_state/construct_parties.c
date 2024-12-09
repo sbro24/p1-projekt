@@ -6,14 +6,16 @@
 
 
 void construct_party_array(char parties[MAX_NUMBER_OF_PARTIES][4]) {
-    printf("Fucking construct_party_array AAAAAAAAAAAaAAAAAAAAAAAAAAA!\n");
-
+    //Open the county file specified in "header.h"
     FILE* file = open_file(FILE_COUNTIES, "r");
 
+    //Declare a array of strings that's 4 characters long, E.g. {"D","E","M","\0"} (Party code + End char)
     char party_result[MAX_NUMBER_OF_PARTIES][4] = {""};
+
     get_unique_parties(file, party_result);
 
-    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) strcat(parties[i], party_result[i]);
+    //copy all the unique party codes into the string array parties specified in the function arguments
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) strcpy(parties[i], party_result[i]);
 
     fclose(file);
 }
@@ -25,28 +27,33 @@ void get_unique_parties(FILE* file, char parties[MAX_NUMBER_OF_PARTIES][4]) {
     fscanf(file, "%*[^\n]\n");
 
     char scanned_party[4];
+    //list of unique parties found so far
     char scanned_parties[MAX_NUMBER_OF_PARTIES][4] = {""};
 
     //loop through file until end
     while (feof(file) == 0) {
-        //Scan line, for Party
+        //Scan line, for Party (* ignore)
         fscanf(file, "%*i \t %*[^\t] \t %*i \t %s \t %*i\n", &scanned_party);
 
         //Count unique parties found so far
         int number_of_parties = count_parties(scanned_parties);
 
+        //check if there's space in scanned_parties
+        if (number_of_parties > MAX_NUMBER_OF_PARTIES) error_handling("Maximum number of parties exceeded");
+
         //continue if scanned_party is not unique
-        if (is_party_in_parties(scanned_parties, scanned_party, number_of_parties)) continue;
+        if (is_string_in_array_of_strings(scanned_parties, scanned_party, number_of_parties)) continue;
 
-        strcat(scanned_parties[number_of_parties], scanned_party);
-
+        //Copy the unique scanned_party into the next available element
+        strcpy(scanned_parties[number_of_parties], scanned_party);
     }
-    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) strcat(parties[i], scanned_parties[i]);
+    //copy the result out of the function
+    for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) strcpy(parties[i], scanned_parties[i]);
 }
 
-int is_party_in_parties(char parties[MAX_NUMBER_OF_PARTIES][4], char to_find[], int string_length) {
+//checks if string is in strings[]
+int is_string_in_array_of_strings(char parties[MAX_NUMBER_OF_PARTIES][4], char to_find[], int string_length) {
     int result = 0;
-
     for (int i = 0; i < string_length; i++) {
         if (!strcmp(parties[i], to_find)) {
             result = 1;
@@ -56,6 +63,7 @@ int is_party_in_parties(char parties[MAX_NUMBER_OF_PARTIES][4], char to_find[], 
     return result;
 }
 
+//counts how many elements in a string array if it contains 1 or more chars
 int count_parties(char parties[MAX_NUMBER_OF_PARTIES][4]) {
     int number_of_parties = 0;
     for (int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
