@@ -7,7 +7,8 @@
 
 void run_program();
 void run_unit_tests();
-
+void test_calc_center();
+void test_calc_dist();
 int main(void) {
 
     //run_program();
@@ -35,6 +36,8 @@ void run_unit_tests() {
     //int number_of_counties = count_counties_in_struct(counties);
 
     test_calc_avg_dist();
+     test_calc_center();
+     test_calc_dist();
 
     //state_t state = construct_state(counties, parties, number_of_parties);
     //double evaluation_map = eval_map();
