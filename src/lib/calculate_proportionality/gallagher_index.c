@@ -10,7 +10,6 @@
  * further, it halves the sum of the difference squared, and finally,
  * it calculates the square root of the half of sum of difference squared,
  * which is the desired Gallagher-index. */
-
 double gallagher_index(state_t state) {
     // Initialize variables
     int total_votes = 0;
