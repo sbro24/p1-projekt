@@ -4,7 +4,7 @@
 
 int dataimport_test(void) {
 
-    FILE *file = open_file("FILE_NAME", 'r');
+    FILE *file = open_file("FILE_NAME", "r");
     filesize f = ScanFile(file);
     char **dataStruct = Allocate2dCHARarray(f.lineCount, f.longestLine);
     ReadFileDataInto2dCHARarray(file, dataStruct, f.lineCount, f.longestLine, '\n');

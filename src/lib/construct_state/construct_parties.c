@@ -2,7 +2,7 @@
 #include "construct_state_header.h"
 #include <stdio.h>
 #include <unistd.h>
-
+#include <string.h>
 
 
 void construct_party_array(char parties[MAX_NUMBER_OF_PARTIES][4]) {
