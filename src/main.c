@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "test.h"
 
 void run_program();
 void run_unit_tests();
