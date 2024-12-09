@@ -4,7 +4,7 @@
 
 #include "eval_map.h"
 
-double eval_fill(int count, coordinate coordinates[count]) {
+double eval_fill(int count, coordinate_t coordinates[count]) {
     double radius = calc_radius(count);
 
     double fill_evaluation = check_coordinate(count, coordinates, radius);
@@ -12,7 +12,7 @@ double eval_fill(int count, coordinate coordinates[count]) {
     return fill_evaluation;
 }
 
-double check_coordinate(int count, coordinate coordinates[count], double radius) {
+double check_coordinate(int count, coordinate_t coordinates[count], double radius) {
 
     int in_cirkle = 0;
     int out_cirkle = 0;
@@ -24,7 +24,7 @@ double check_coordinate(int count, coordinate coordinates[count], double radius)
     calc_center(&center_x, &center_y, coordinates, count);
 
     for (int i = 0; i < count; i++) {
-        coordinate coordinate_point = {coordinates[i].x, coordinates[i].y};
+        coordinate_t coordinate_point = {coordinates[i].x, coordinates[i].y};
         dist = calc_dist(&coordinate_point, center_x, center_y);
         if (dist < radius) {
             in_cirkle++;

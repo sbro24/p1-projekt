@@ -12,7 +12,7 @@ typedef struct {
 // write prototypes here
 double eval_map(int no_of_districts, district_t districts[no_of_districts]);
 
-void print_district (int district[10][10]);
+void print_district(int district[MAX_GRID_SIZE_X][MAX_GRID_SIZE_Y]);
 coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int* count);
 
 //hjælpefunktion

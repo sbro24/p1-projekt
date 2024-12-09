@@ -16,7 +16,7 @@ void test_calc_avg_dist() {
     double y_coords[] = {4.5, 5.5, 4.5, 5.5, 4.5};
 
     // Convert
-    coordinate test_coordinates[count];
+    coordinate_t test_coordinates[count];
     for (int i = 0; i < count; i++) {
         test_coordinates[i].x = x_coords[i];
         test_coordinates[i].y = y_coords[i];
@@ -49,7 +49,7 @@ void test_calc_center() {
     double y_coords[] = {4.5, 5.5, 4.5, 5.5, 4.5};
 
     //Convert
-    coordinate test_coordinates[count];
+    coordinate_t test_coordinates[count];
     for (int i = 0; i < count; i++) {
         test_coordinates[i].x = x_coords[i];
         test_coordinates[i].y = y_coords[i];
@@ -85,7 +85,7 @@ void test_calc_center() {
 void test_calc_dist() {
 
     // Test input
-    coordinate test_coordinates = {3.5, 4.5}; // Example point
+    coordinate_t test_coordinates = {3.5, 4.5}; // Example point
     double center_x = 4.3, center_y = 4.9; // Example center coordinates
 
     // Actual distance

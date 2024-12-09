@@ -6,7 +6,7 @@
 #include <math.h>
 #include <stdio.h>
 
-double eval_shape(int count, coordinate coordinates[count]) {
+double eval_shape(int count, coordinate_t coordinates[count]) {
 
     double  center_x = 0,
             center_y = 0;
@@ -18,11 +18,11 @@ double eval_shape(int count, coordinate coordinates[count]) {
     return shape_evaluation;
 }
 
-double calc_avg_dist(int count, coordinate coordinates[count], double center_x, double center_y) {
+double calc_avg_dist(int count, coordinate_t coordinates[count], double center_x, double center_y) {
     double dist = 0;
 
     for (int i = 0; i < count; i++) {
-        coordinate coordinate_point = {coordinates[i].x, coordinates[i].y};
+        coordinate_t coordinate_point = {coordinates[i].x, coordinates[i].y};
         dist += calc_dist (&coordinate_point, center_x, center_y);
     }
 
@@ -32,7 +32,7 @@ double calc_avg_dist(int count, coordinate coordinates[count], double center_x, 
     return optimal_dist/avg_dist*100;
 }
 
-double calc_dist (coordinate* coordinate_point, double center_x, double center_y) {
+double calc_dist (coordinate_t* coordinate_point, double center_x, double center_y) {
 
     double dist_x = (double) coordinate_point[0].x - center_x;
     double dist_y = (double) coordinate_point[0].y - center_y;
