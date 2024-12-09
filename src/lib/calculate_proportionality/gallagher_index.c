@@ -10,7 +10,9 @@
  * further, it halves the sum of the difference squared, and finally,
  * it calculates the square root of the half of sum of difference squared,
  * which is the desired Gallagher-index. */
+
 double gallagher_index(state_t state) {
+    // Initialize variables
     int total_votes = 0;
     int total_seats = 0;
     double vote_percentages[MAX_NUMBER_OF_PARTIES] = {0};
@@ -18,16 +20,27 @@ double gallagher_index(state_t state) {
     double difference_squared[MAX_NUMBER_OF_PARTIES] = {0};
     double half_of_sum_of_difference_squared = 0;
 
-
+    // For loop to loop through the different districts
     for(int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
+        // Calculate total votes and seats
         total_votes += state.total_votes[i];
         total_seats += state.number_of_seats[i];
+
+        // Calculate vote and seat percentages
         vote_percentages[i] = 100.00 * state.total_votes[i] / total_votes;
         seat_percentages[i] = 100.00 * state.number_of_seats[i] / total_seats;
+
+        // Calculate the difference between vote and seat percentages, then squared
         difference_squared[i] = pow(vote_percentages[i] - seat_percentages[i], 2);
+
+        // Halve the sum of the squared difference
         half_of_sum_of_difference_squared += difference_squared[i] / 2;
     }
+    // Finally, the square root of the halved sum is the desired gallagher index
     double gallagher_index = sqrt(half_of_sum_of_difference_squared);
 
     return gallagher_index;
 }
+
+
+
