@@ -7,4 +7,7 @@
 
 void dataimport_test(void);
 void test_calc_avg_dist(void);
+void test_calc_center();
+void test_calc_dist();
+void test_eval_fill();
 #endif //TEST_H

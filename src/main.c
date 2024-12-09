@@ -8,8 +8,8 @@
 
 void run_program();
 void run_unit_tests();
-void test_calc_center();
-void test_calc_dist();
+
+
 int main(void) {
 
     //run_program();
@@ -39,6 +39,7 @@ void run_unit_tests() {
     test_calc_avg_dist();
      test_calc_center();
      test_calc_dist();
+    test_eval_fill();
 
     //state_t state = construct_state(counties, parties, number_of_parties);
     //double evaluation_map = eval_map();

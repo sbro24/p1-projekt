@@ -107,3 +107,37 @@ void test_calc_dist() {
         printf("Test failed\n");
     }
 }
+
+void test_eval_fill() {
+
+    // Expected value for eval_fill function
+    double expected_eval_fill = 80; // Adjust if necessary
+
+    // Test input in x and y arrays
+    int count = 5;
+    double x_coords[] = {3.5, 3.5, 4.5, 4.5, 5.5};
+    double y_coords[] = {4.5, 5.5, 4.5, 5.5, 4.5};
+
+    // Convert
+    coordinate_t test_coordinates[count];
+    for (int i = 0; i < count; i++) {
+        test_coordinates[i].x = x_coords[i];
+        test_coordinates[i].y = y_coords[i];
+    }
+
+    // calculate the actual values for eval_fill
+    double actual_eval_fill = eval_fill(count, test_coordinates);
+
+    printf("\nTest for eval_fill:\n");
+    printf("Expected Distance: %.2f\n", expected_eval_fill);
+    printf("Actual Distance: %.2f\n", actual_eval_fill);
+
+    // Verify the result
+    double tolerance = 0.1;
+    if (fabs(expected_eval_fill - actual_eval_fill) <= tolerance) {
+        printf("Test passed\n");
+    } else {
+        printf("Test failed\n");
+    }
+
+  }
