@@ -2,79 +2,49 @@
 #include <stdlib.h>
 #include <math.h>
 #include <eval_map.h>
+#include "header.h"
 
-double eval_map(void) {
+double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
 
+    coordinate_t* coordinates = NULL;
 
+    double  evaluation_fill = 0,
+            evaluation_fill_akk = 0,
+            evaluation_shape = 0,
+            evaluation_shape_akk = 0,
+            evaluation_map = 0,
+            evaluation_map_akk = 0;
 
-    int district[10][10];
-    int count = 0; // To store the number of coordinates generated
+    for (int i = 0; i < no_of_districts; i++) {
+        int count = 0; // To store the number of coordinates generated
+        coordinates = generate_coordinates(MAX_GRID_SIZE_X, MAX_GRID_SIZE_Y, districts[i].grid_map, &count);
+        if (count == 0) {
+            continue;
+        } else {
+            evaluation_fill = eval_fill(count, coordinates);
+            evaluation_fill_akk += evaluation_fill;
 
-    read_district(district);
-    coordinate* coordinates = generate_coordinates(10, 10, district, &count);
+            evaluation_shape = eval_shape(count, coordinates);
+            evaluation_shape_akk += evaluation_shape;
 
-    print_district(district);
+            evaluation_map = (evaluation_fill + evaluation_shape)/2;
+            evaluation_map_akk += evaluation_map;
 
-    double evaluation_fill = eval_fill(count, coordinates);
-    double evaluation_shape = eval_shape(count, coordinates);
-
-    double evaluation_map = (evaluation_fill + evaluation_shape)/2;
-
-        printf("fill evaluation: %lf\n", evaluation_fill);
-        printf("Shape evaluation: %lf\n", evaluation_shape);
-        printf("map evaluation (overall score): %lf\n", evaluation_map);
-
-    free(coordinates);
+            if (coordinates) {
+                free(coordinates);
+                coordinates = NULL;
+            }
+        }
+    }
 
     return evaluation_map;
 }
 
-void read_district (int district[10][10]) {
-    int temp_1 [10][10] = {{1,1,1,1,1,1,1,1,1,1},
-                        {0,1,1,1,1,1,1,0,0,0},
-                        {0,0,1,1,1,1,1,0,0,0},
-                        {0,1,1,1,1,1,1,0,0,0},
-                        {0,0,1,1,1,1,1,1,0,0},
-                        {0,0,1,1,1,0,0,0,0,0},
-                        {0,0,1,1,1,1,1,1,1,0},
-                        {0,0,0,1,1,1,1,0,0,0},
-                        {0,0,0,1,1,1,0,0,0,0},
-                        {0,0,0,0,1,0,0,0,0,0}};
-
-    int temp_2 [10][10] = { {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,1,1,0,0,0,0},
-                            {0,0,0,0,1,1,0,0,0,0},
-                            {0,0,0,0,1,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0,0,0}};
-
-    int temp_3 [10][10] = { {0,0,0,0,1,1,0,0,0,0},
-                            {0,0,0,1,1,1,1,0,0,0},
-                            {0,0,1,1,1,1,1,1,0,0},
-                            {0,1,1,1,1,1,1,1,1,0},
-                            {1,1,1,1,1,1,1,1,1,1},
-                            {1,1,1,1,1,1,1,1,1,1},
-                            {0,1,1,1,1,1,1,1,1,0},
-                            {0,0,1,1,1,1,1,1,0,0},
-                            {0,0,0,1,1,1,1,0,0,0},
-                            {0,0,0,0,1,1,0,0,0,0}};
-
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            district[i][j] = temp_1[i][j];
-        }
-    }
-}
-
-coordinate* generate_coordinates(int rows, int cols, int district[rows][cols], int* count) {
+coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int* count) {
     *count = 0; // Initialize count
 
     // Allocate memory for the coordinates (worst case: every element has a coordinate)
-    coordinate* coordinates = malloc(rows * cols * sizeof(coordinate));
+    coordinate_t* coordinates = malloc(rows * cols * sizeof(coordinate_t));
     if (!coordinates) {
         perror("Failed to allocate memory");
         exit(EXIT_FAILURE);
@@ -94,12 +64,12 @@ coordinate* generate_coordinates(int rows, int cols, int district[rows][cols], i
     return coordinates;
 }
 
-void print_district (int district[10][10]) {
+void print_district (int district[MAX_GRID_SIZE_X][MAX_GRID_SIZE_Y]) {
 
     printf("Map: \n");
     printf("___________________________________\n");
-    for (int i = 0; i<10; i++) {
-        for(int j = 0; j<10; j++) {
+    for (int i = 0; i<MAX_GRID_SIZE_X; i++) {
+        for(int j = 0; j<MAX_GRID_SIZE_Y; j++) {
             if (district[i][j] == 1 ) {
                 printf(" %d ", district[i][j]);
             } else {
@@ -111,7 +81,7 @@ void print_district (int district[10][10]) {
     printf("___________________________________\n");
 }
 
-void calc_center (double* center_x, double* center_y, coordinate* coordinates, int count) {
+void calc_center (double* center_x, double* center_y, coordinate_t* coordinates, int count) {
     double sum_of_x = 0;
     double sum_of_y = 0;
 
@@ -128,5 +98,3 @@ void calc_center (double* center_x, double* center_y, coordinate* coordinates, i
 double calc_radius (int count) {
     return sqrt(count / (M_PI));
 }
-
-
