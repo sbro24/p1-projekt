@@ -36,7 +36,7 @@ double gallagher_index(state_t state) {
         // Halve the sum of the squared difference
         half_of_sum_of_difference_squared += difference_squared[i] / 2;
     }
-    // Finally, the square root of the halved sum is the desired gallagher index
+    // Square root of the halved sum is the desired Gallagher-Index
     double gallagher_index = sqrt(half_of_sum_of_difference_squared);
 
     return gallagher_index;
