@@ -5,7 +5,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+void run_program();
+void run_unit_tests();
+
 int main(void) {
+
+    //run_program();
+    run_unit_tests();
+
+    return 0;
+}
+
+// write actual program here
+void run_program() {
+
+}
+
+// write unit test here
+void run_unit_tests() {
+
     //printf("Fucking cLion AAAAAAAAAAAAAAAAAAAAAAAAAA!\n");
 
     //char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
@@ -23,8 +41,6 @@ int main(void) {
     //printf("Evaluation of map form main: %lf\n", evaluation_map);
 
     //gallagher_index(state);
-
-    return 0;
 }
 
 void error_handling(char *message) {
