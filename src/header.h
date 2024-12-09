@@ -2,7 +2,7 @@
 
 #define INPUT_DIRECTORY "input_files"
 #define FILE_COUNTIES "us_house_north_carolina_results_2024_index.txt"
-#define FILE_GRID "path.csv"
+#define FILE_GRID "grid_north carolina_incl_zero.csv"
 #define FILE_GRAPH "path.csv"
 #define FILE_POPULATION "path.csv"
 
@@ -20,7 +20,9 @@
 typedef struct {
     int district_number;
     int votes[MAX_NUMBER_OF_PARTIES];
-    int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
+    int grid_map[MAX_GRID_SIZE_X][58]; //works
+    //int grid_map[MAX_GRID_SIZE_X][59]; //doesn't work
+    //int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
 } district_t;
 
 //state struct
@@ -41,4 +43,6 @@ typedef struct {
 
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties);
 void error_handling(char *message);
+void run_program_thing();
+void run_unit_tests();
 

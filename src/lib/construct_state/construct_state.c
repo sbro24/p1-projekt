@@ -8,7 +8,7 @@
 
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties) {
     //TODO: Make state empty
-    state_t state_results;
+    state_t state_results = {{0, {0}, {{0}}},{0}, {0},{0}};
 
     //copy counties data
     county_t counties_copy[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};

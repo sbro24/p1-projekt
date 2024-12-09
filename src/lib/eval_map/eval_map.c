@@ -6,6 +6,12 @@
 
 double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
 
+    district_t district_copy[MAX_NUMBER_OF_DISTRICTS];
+    for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
+        district_copy[i] = districts[i];
+    }
+
+
     coordinate_t* coordinates = NULL;
 
     double  evaluation_fill = 0,
@@ -17,7 +23,7 @@ double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
 
     for (int i = 0; i < no_of_districts; i++) {
         int count = 0; // To store the number of coordinates generated
-        coordinates = generate_coordinates(MAX_GRID_SIZE_X, MAX_GRID_SIZE_Y, districts[i].grid_map, &count);
+        //coordinates = generate_coordinates(MAX_GRID_SIZE_X, MAX_GRID_SIZE_Y, districts[i].grid_map, &count);
         if (count == 0) {
             continue;
         } else {

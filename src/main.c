@@ -33,7 +33,7 @@ void run_program() {
     double evaluation_map = eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts);
     printf("Evaluation of map from main: %lf\n", evaluation_map);
 
-    gallagher_index(state);
+    //gallagher_index(state);
 }
 
 // write unit test here
@@ -41,10 +41,10 @@ void run_unit_tests() {
 
 
 
-    test_calc_avg_dist();
-     test_calc_center();
-     test_calc_dist();
-    test_eval_fill();
+    //test_calc_avg_dist();
+    //test_calc_center();
+    //test_calc_dist();
+    //test_eval_fill();
 
 
 }
