@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "test.h"
-#include <gallagher_index_test.c>
+#include <gallagher_index_test_2.c>
 
 void run_program();
 void run_unit_tests();
