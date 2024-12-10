@@ -6,6 +6,12 @@
 #include <math.h>
 #include <stdio.h>
 
+/**
+ * evaluates shape of a district
+ * @param count number of coordinates in grid-map of a given district
+ * @param coordinates array of coordinates in a given district
+ * @return an index between 0 and 100
+ */
 double eval_shape(int count, coordinate_t coordinates[count]) {
 
     double  center_x = 0,
@@ -18,6 +24,14 @@ double eval_shape(int count, coordinate_t coordinates[count]) {
     return shape_evaluation;
 }
 
+/**
+ * calculates average distance between center and coordinates of a districts relative to the smallest possible average distance
+ * @param count evaluates shape of a district
+ * @param coordinates number of coordinates in grid-map of a given district
+ * @param center_x the center of the district
+ * @param center_y the center of the district
+ * @return a percentage between 0 and 100
+ */
 double calc_avg_dist(int count, coordinate_t coordinates[count], double center_x, double center_y) {
     double dist = 0;
 
@@ -32,6 +46,13 @@ double calc_avg_dist(int count, coordinate_t coordinates[count], double center_x
     return optimal_dist/avg_dist*100;
 }
 
+/**
+ * calculates the distance from a coordinate to the center of a district using the pythagorean theorem
+ * @param coordinate_point a given coordinate within the district
+ * @param center_x Center of the district
+ * @param center_y Center of the district
+ * @return distance
+ */
 double calc_dist (coordinate_t* coordinate_point, double center_x, double center_y) {
 
     double dist_x = (double) coordinate_point[0].x - center_x;

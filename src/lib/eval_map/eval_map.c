@@ -4,6 +4,12 @@
 #include <eval_map.h>
 #include "header.h"
 
+/**
+ * An evaluation of the state map in terms of fill and distance to center
+ * @param no_of_districts the total number of districts in state
+ * @param districts array of district structs containing grid-maps
+ * @return  an index between 0 and 100
+ */
 double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
 
     district_t district_copy[MAX_NUMBER_OF_DISTRICTS];
@@ -12,7 +18,7 @@ double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
     }
 
 
-    coordinate_t* coordinates = NULL;
+    coordinate_t* coordinates = NULL; //initialization of array of structs containing coordinates.
 
     double  evaluation_fill = 0,
             evaluation_fill_akk = 0,
@@ -21,9 +27,10 @@ double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
             evaluation_map = 0,
             evaluation_map_akk = 0;
 
+    // for each districts fill and shape is evaluated. Result are summed up as akkumulated values.
     for (int i = 0; i < no_of_districts; i++) {
         int count = 0; // To store the number of coordinates generated
-        //coordinates = generate_coordinates(MAX_GRID_SIZE_X, MAX_GRID_SIZE_Y, districts[i].grid_map, &count);
+        coordinates = generate_coordinates(MAX_GRID_SIZE_X, MAX_GRID_SIZE_Y, districts[i].grid_map, &count);
         if (count == 0) {
             continue;
         } else {
@@ -46,6 +53,14 @@ double eval_map(int no_of_districts, district_t districts[no_of_districts]) {
     return evaluation_map;
 }
 
+/**
+ *
+ * @param rows number of rows in the grid-map of the state
+ * @param cols number of columns in the grid-map of state
+ * @param district grid-map of a district
+ * @param count number of grids in the district
+ * @return an array of (x, y) coordinates
+ */
 coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int* count) {
     *count = 0; // Initialize count
 
@@ -66,6 +81,10 @@ coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols],
     return coordinates;
 }
 
+/**
+ * prints a grid-map of district
+ * @param district grid-map of a district as a 2d array
+ */
 void print_district (int district[MAX_GRID_SIZE_X][MAX_GRID_SIZE_Y]) {
 
     printf("Map: \n");
@@ -83,6 +102,13 @@ void print_district (int district[MAX_GRID_SIZE_X][MAX_GRID_SIZE_Y]) {
     printf("___________________________________\n");
 }
 
+/**
+ * Calculates a weighted center of the district
+ * @param center_x center of the district
+ * @param center_y center of the district
+ * @param coordinates array of coordinates generated from grid-map
+ * @param count number of coordinates
+ */
 void calc_center (double* center_x, double* center_y, coordinate_t* coordinates, int count) {
     double sum_of_x = 0;
     double sum_of_y = 0;
@@ -97,6 +123,11 @@ void calc_center (double* center_x, double* center_y, coordinate_t* coordinates,
 
 }
 
+/**
+ * Calculates the size of the smallest possible circle containing the number of coordinates in the district
+ * @param count number of coordinates in district
+ * @return radius of optimal cirkle
+ */
 double calc_radius (int count) {
     return sqrt(count / (M_PI));
 }

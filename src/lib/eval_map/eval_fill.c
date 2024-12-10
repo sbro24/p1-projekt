@@ -4,6 +4,12 @@
 
 #include "eval_map.h"
 
+/**
+ * evaluates fill of a district
+ * @param count number of coordinates in grid-map of a given district
+ * @param coordinates array of coordinates in a given district
+ * @return an index between 0 and 100
+ */
 double eval_fill(int count, coordinate_t coordinates[count]) {
     double radius = calc_radius(count);
 
@@ -12,6 +18,13 @@ double eval_fill(int count, coordinate_t coordinates[count]) {
     return fill_evaluation;
 }
 
+/**
+ * calculates the percentage of coordinates within a circle
+ * @param count number of coordinates in grid-map of a given district
+ * @param coordinates array of coordinates in a given district
+ * @param radius radius of the smallest possible circle containing the number of coordinates
+ * @return a percentage between 0 and 100
+ */
 double check_coordinate(int count, coordinate_t coordinates[count], double radius) {
 
     int in_cirkle = 0;
