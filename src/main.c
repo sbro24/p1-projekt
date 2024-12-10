@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "test.h"
+#include <gallagher_index_test.c>
 
 void run_program();
 void run_unit_tests();
@@ -45,6 +46,7 @@ void run_unit_tests() {
     //test_calc_center();
     //test_calc_dist();
     //test_eval_fill();
+    //test_gallagher_index();
 
 
 }

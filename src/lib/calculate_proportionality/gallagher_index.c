@@ -19,11 +19,15 @@ double gallagher_index(state_t state) {
     double difference_squared[MAX_NUMBER_OF_PARTIES] = {0};
     double half_of_sum_of_difference_squared = 0;
 
-    // For loop to loop through the different districts
+    // For loop to count total number of votes and seats in the different districts
     for(int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
         // Calculate total votes and seats
         total_votes += state.total_votes[i];
         total_seats += state.number_of_seats[i];
+    }
+
+    // For loop to loop through the different districts
+    for(int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
 
         // Calculate vote and seat percentages
         vote_percentages[i] = 100.00 * state.total_votes[i] / total_votes;
