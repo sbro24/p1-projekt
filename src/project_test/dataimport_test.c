@@ -1,18 +1,56 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "dataimporter.h"
 #include "construct_state_header.h"
 
-int dataimport_test(void) {
-
-    FILE *file = open_file("us_house_north_carolina_results_2024_index.txt", "r");
-    filesize f = ScanFile(file);
-    char **dataStruct = Allocate2dCHARarray(f.lineCount, f.longestLine);
-    ReadFileDataInto2dCHARarray(file, dataStruct, f.lineCount, f.longestLine, '\n');
+void dataimport_test(void) {
+    int buf = 500;
+    FILE *file = open_file("grid_north_carolina.csv", "r");
+    filesize f = ScanFile(file, buf);
+    char **dataStructSTR = Allocate2dCHARArray(f.lineCount, f.longestLine);
+    ReadFileDataInto2dCHARArray(file, dataStructSTR, f.lineCount, f.longestLine);
     fclose(file);
-    int **resultArray = ConvertToInt(dataStruct,f.lineCount,f.longestLine);
-    Print2dArrayCHAR(dataStruct,f.lineCount,f.longestLine);
-    Free2dArrayCHAR(dataStruct,f.lineCount);
-    Free2dArrayINT(resultArray,f.lineCount);
+    int **dataStructINT = ConvertToInt(dataStructSTR, f.lineCount, f.longestLine);
 
-    return 0;
+    char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
+    construct_party_array(parties);
+    int number_of_parties = count_parties(parties);
+    county_t counties[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
+    construct_county_array(counties, parties, number_of_parties);
+
+    printf("Function start\n");
+    int **gridArray = Allocate2dINTArray(f.lineCount, f.longestLine);
+
+    for (int m = 0; m < f.lineCount; m++) {
+        for (int n = 0; n < f.longestLine; n++) {
+            gridArray[m][n] = 0;
+        }
+    }
+    for (int i = 0; i < 14; i++) {
+        for (int j = 0; j < count_counties_in_struct(counties); j++) {
+            for (int k = 0; k < f.lineCount; k++) {
+                for (int l = 0; l < f.longestLine; l++) {
+                    if (dataStructINT[k][l] == counties[i].district && gridArray[k][l] == 0) {
+                        gridArray[k][l] = i;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+    Print2dArrayINT(gridArray,f.lineCount, f.longestLine);
+
+    Free2dArrayCHAR(dataStructSTR,f.lineCount);
+    Free2dArrayINT(dataStructINT,f.lineCount);
+    Free2dArrayINT(gridArray,f.lineCount);
+
 }
