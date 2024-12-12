@@ -47,7 +47,7 @@ void run_unit_tests() {
     //test_calc_dist();
     //test_eval_fill();
     //test_gallagher_index();
-    output_to_txt("Output_files/output_to_txt.txt");
+    output_to_txt2(dataimport_test_output);
 
 }
 
