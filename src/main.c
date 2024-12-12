@@ -2,6 +2,7 @@
 #include "construct_state_header.h"
 #include "calculate_proportionality.h"
 #include "eval_map.h"
+#include "output.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +17,7 @@ int main(void) {
 
     run_program();
     run_unit_tests();
+
 
     return 0;
 }
@@ -32,16 +34,16 @@ void run_program() {
 
     state_t state = construct_state(counties, parties, number_of_parties);
     double evaluation_map = eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts);
-    printf("Evaluation of map from main: %lf\n", evaluation_map);
-
     gallagher_index(state);
+
+    output()
 }
 
 // write unit test here
 void run_unit_tests() {
 
 
-    //dataimport_test()
+    dataimport_test();
     //test_calc_avg_dist();
     //test_calc_center();
     //test_calc_dist();
