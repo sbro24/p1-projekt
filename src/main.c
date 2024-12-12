@@ -33,8 +33,6 @@ void run_program() {
     int number_of_counties = count_counties_in_struct(counties);
 
     state_t state = construct_state(counties, parties, number_of_parties);
-    //double evaluation_map = eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts);
-    //gallagher_index(state);
 
     output(state, parties, eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts), gallagher_index(state));
 }

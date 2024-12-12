@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "output.h"
 #include "header.h"
-#include "lib/calculate_proportionality/calculate_proportionality.h"
-#include "lib/eval_map/eval_map.h"
+
 
 void output(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4], double eval_map, double gallagher_index) {
     output_vote_percentages_and_seats(state, parties);
