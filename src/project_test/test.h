@@ -5,6 +5,7 @@
 #ifndef TEST_H
 #define TEST_H
 
+void output_to_txt(const char *test_output);
 void dataimport_test(void);
 void test_calc_avg_dist(void);
 void test_calc_center();
