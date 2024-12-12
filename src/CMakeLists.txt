@@ -9,13 +9,14 @@ target_include_directories(calculate_proportionality_lib PUBLIC lib/calculate_pr
 target_include_directories(construct_state_lib PUBLIC lib/construct_state)
 target_include_directories(dataimporter_lib PUBLIC lib/DataImporter)
 target_include_directories(eval_map_lib PUBLIC lib/eval_map)
+target_include_directories(output_lib PUBLIC lib/output)
 target_include_directories(test_lib PUBLIC project_test)
+
 
 # Main executable
 add_executable(p1_projekt main.c
-        header.h
-        lib/Output/Output.c
-        lib/Output/Output.h)
+        header.h)
+
 
 # Main library link
 target_link_libraries(p1_projekt
@@ -24,6 +25,7 @@ target_link_libraries(p1_projekt
         dataimporter_lib
         eval_map_lib
         test_lib
+        output_lib
 )
 
 

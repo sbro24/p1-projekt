@@ -33,17 +33,17 @@ void run_program() {
     int number_of_counties = count_counties_in_struct(counties);
 
     state_t state = construct_state(counties, parties, number_of_parties);
-    double evaluation_map = eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts);
-    gallagher_index(state);
+    //double evaluation_map = eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts);
+    //gallagher_index(state);
 
-    output()
+    output(state, parties, eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts), gallagher_index(state));
 }
 
 // write unit test here
 void run_unit_tests() {
 
 
-    dataimport_test();
+    //dataimport_test();
     //test_calc_avg_dist();
     //test_calc_center();
     //test_calc_dist();

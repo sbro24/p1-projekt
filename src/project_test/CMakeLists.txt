@@ -9,4 +9,5 @@ target_link_libraries(test_lib
         construct_state_lib
         dataimporter_lib
         eval_map_lib
+        output_lib
 )
