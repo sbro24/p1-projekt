@@ -5,6 +5,11 @@
 #include "dataimporter.h"
 #include "construct_state_header.h"
 
+void InitializeMatrixINT(int **matrix, int rows, int columns);
+int **CreateDistrictMap(int **countyMap, int districts, county_t counties[MAX_NUMBER_OF_COUNTIES], int county_number, int rows, int columns);
+int **GetDistrictGrid(int **districtMap, int districtID, int rows, int columns);
+
+
 void dataimport_test(void) {
     int buf = 500;
     FILE *file = open_file("grid_north_carolina.csv", "r");
@@ -20,37 +25,59 @@ void dataimport_test(void) {
     county_t counties[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
     construct_county_array(counties, parties, number_of_parties);
 
-    printf("Function start\n");
-    int **gridArray = Allocate2dINTArray(f.lineCount, f.longestLine);
 
-    for (int m = 0; m < f.lineCount; m++) {
-        for (int n = 0; n < f.longestLine; n++) {
-            gridArray[m][n] = 0;
+    int **districtMap = CreateDistrictMap(dataStructINT, 14, counties, count_counties_in_struct(counties), f.lineCount, f.longestLine);
+    int **districtGrid = GetDistrictGrid(districtMap, counties[1].district, f.lineCount, f.longestLine);
+
+    //Print2dArraySTR(dataStructSTR,f.lineCount);
+    //Print2dArrayINT(dataStructINT,f.lineCount, f.longestLine);
+    Print2dArrayINT(districtMap,f.lineCount, f.longestLine);
+    //Print2dArrayINT(districtGrid,f.lineCount, f.longestLine);
+
+    Free2dArrayCHAR(dataStructSTR,f.lineCount);
+    Free2dArrayINT(dataStructINT,f.lineCount);
+    Free2dArrayINT(districtMap,f.lineCount);
+    Free2dArrayINT(districtGrid,f.lineCount);
+
+}
+
+
+void InitializeMatrixINT(int **matrix, int rows, int columns) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            matrix[i][j] = 0;
         }
     }
-    for (int i = 0; i < 14; i++) {
-        for (int j = 0; j < count_counties_in_struct(counties); j++) {
-            for (int k = 0; k < f.lineCount; k++) {
-                for (int l = 0; l < f.longestLine; l++) {
-                    if (dataStructINT[k][l] == counties[i].district && gridArray[k][l] == 0) {
-                        gridArray[k][l] = i;
+}
+
+int **CreateDistrictMap(int **countyMap, int districts, county_t counties[MAX_NUMBER_OF_COUNTIES], int county_number, int rows, int columns) {
+    int **districtMap = Allocate2dINTArray(rows, columns);
+    InitializeMatrixINT(districtMap, rows, columns);
+    for (int i = 1; i <= districts; i++) {
+        for (int j = 0; j <= county_number; j++) {
+            if (counties[j].district != 0) {
+                for (int k = 0; k < rows; k++) {
+                    for (int l = 0; l < columns; l++) {
+                        if (countyMap[k][l] == j && districtMap[k][l] == 0) {
+                            districtMap[k][l] = counties[j].district;
+                        }
                     }
                 }
             }
         }
     }
+    return districtMap;
+}
 
-
-
-
-
-
-
-
-    Print2dArrayINT(gridArray,f.lineCount, f.longestLine);
-
-    Free2dArrayCHAR(dataStructSTR,f.lineCount);
-    Free2dArrayINT(dataStructINT,f.lineCount);
-    Free2dArrayINT(gridArray,f.lineCount);
-
+int **GetDistrictGrid(int **districtMap, int districtID, int rows, int columns) {
+    int **districtGrid = Allocate2dINTArray(rows, columns);
+    InitializeMatrixINT(districtMap, rows, columns);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if(districtMap[i][j] == districtID) {
+                districtMap[i][j] = 1;
+            }
+        }
+    }
+    return districtGrid;
 }
