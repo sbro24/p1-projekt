@@ -89,14 +89,22 @@ void district_vote_percentages(state_t state, char parties[MAX_NUMBER_OF_PARTIES
         for(int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
             total_district_votes[j] += state.districts[j].votes[i];
         }
+        if (total_district_votes[j] <= 0) continue;
+        printf("District %d total votes: %d\n", j + 1, total_district_votes[j]);
+        printf("\n");
         for(int k = 0; k < MAX_NUMBER_OF_PARTIES; k++) {
             // Calculate vote percentages
             district_vote_percentages[j] = 100.00 * state.districts[j].votes[k] / total_district_votes[j];
             if (state.districts[j].votes[k] <= 0) continue;
-            printf("District %d's %s vote percentage: %.2f%\n", j, parties[k], district_vote_percentages[j]);
-
+            printf("District %d's %s vote percentage: %.2f%\n", j + 1, parties[k], district_vote_percentages[j]);
         }
-        printf("District %d total votes: %d\n", j + 1, total_district_votes[j]);
+        printf("\n");
     }
     printf("\n");
+    /* Number of votes and percentage for democrats in district 2 3 and 12
+    int district_2_3_12 = total_district_votes[1] + total_district_votes[2] + total_district_votes[11];
+    printf("district 2 3 and 12 votes combined: %d\n", district_2_3_12);
+    double percent = 100.00 * district_2_3_12 / state.total_votes[0];
+    printf("percent: %.2f\n", percent); */
 }
+
