@@ -5,7 +5,7 @@
 #include "construct_state_header.h"
 #include "test.h"
 
-void dataimport_test_output(FILE *fp) {
+void dataimport_test_output(void) {
     int buf = 500;
     FILE *file = open_file("grid_north_carolina.csv", "r");
     filesize f = ScanFile(file, buf);
@@ -56,7 +56,7 @@ void dataimport_test_output(FILE *fp) {
 }
 
 
-
+/*
 void output_to_txt(const char *test_output)
 {
     // open the file for writing
@@ -68,7 +68,24 @@ void output_to_txt(const char *test_output)
         EXIT_FAILURE;
     }
 
-    dataimport_test_output(fp);
+    dataimport_test_output();
+
+    // close the file
+    fclose(fp);
+}
+*/
+void output_to_txt2(void (*f)(void))
+{
+    // open the file for writing
+    FILE *fp = freopen("Output_files/output_to_txt.txt",
+        "w", stdout);
+    if (fp == NULL)
+    {
+        printf("Error opening the file %p", &fp);
+        EXIT_FAILURE;
+    }
+
+    f();
 
     // close the file
     fclose(fp);
