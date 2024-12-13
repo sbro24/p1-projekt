@@ -4,15 +4,20 @@
 
 #include "header.h"
 
+typedef struct district_test_t {int id; int votes[2]; char name[30]; int map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];} district_test_t;
+
 typedef struct {
     double x; // Row index
     double y; // Column index
 } coordinate_t;
 
 // write prototypes here
-double eval_map(int no_of_districts, district_t districts[no_of_districts]);
+double eval_map(int no_of_districts, state_t districts[no_of_districts]);
+district_test_t *read_map_district(int no_of_districts, district_test_t districts[no_of_districts]);
+district_test_t *create_district(int no_of_districts, district_test_t districts[no_of_districts]);
+void read_map_to_district(int no_of_districts, district_test_t districts_test[no_of_districts]);
 
-void print_district(int district[MAX_GRID_SIZE_X][MAX_GRID_SIZE_Y]);
+void print_district(int no_of_districts, district_test_t district_test[no_of_districts]);
 coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int* count);
 
 //hjælpefunktion

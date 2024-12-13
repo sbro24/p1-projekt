@@ -41,7 +41,7 @@ double calc_avg_dist(int count, coordinate_t coordinates[count], double center_x
     }
 
     double avg_dist = dist/count;
-    double optimal_dist = (calc_radius(count)*2)/3;
+    double optimal_dist = calc_radius(count)*2/3;
 
     return optimal_dist/avg_dist*100;
 }
