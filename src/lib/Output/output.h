@@ -18,5 +18,6 @@ double calculate_final_score(double eval_map, double reformated_gallagher_index)
 
 void print_final_score(double eval_map, double reformated_gallagher_index);
 
+void district_vote_percentages(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4]);
 
 #endif //OUTPUT_H
