@@ -224,7 +224,7 @@ district_test_t* create_district(int no_of_districts, district_test_t districts[
 }
 
 district_test_t *read_map_district(int no_of_districts, district_test_t districts[no_of_districts]) {
-    char filename[] = "C:/Users/mikke/CLionProjects/adhoc_programs/src/grid_north carolina_correctID.txt"; // Path to your text file
+    char filename[] = "src/input_files/grid_north_carolina_correctID.txt"; // Path to your text file
     int array[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X]; // Fixed size array
     int rows = 0, cols = 0;
 
