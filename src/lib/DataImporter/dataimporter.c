@@ -136,8 +136,14 @@ int **Allocate2dINTArray(int rows, int columns){
     return intArray2d;
 }
 
+void VoidAllocate2dINTArray(int **intArray2d, int rows, int columns) {
+    malloc(rows * sizeof(int*));
+    for (int i = 0; i < rows; i++) {
+        intArray2d[i] = malloc((columns + 1) * sizeof(int));
+    }
+}
+
 void ReadFileDataInto2dCHARArray(FILE *file, char **array, int rows, int columns) {
-    int linecount = 1;
     for (int i = 0; i < rows; i++) {
         if (fgets(array[i], columns, file) == NULL) {
             break;
