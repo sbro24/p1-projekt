@@ -20,9 +20,6 @@
 typedef struct {
     int district_number;
     int votes[MAX_NUMBER_OF_PARTIES];
-    int grid_map[100][70]; //works
-    //int grid_map[MAX_GRID_SIZE_X][59]; //doesn't work
-    //int grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X];
 } district_t;
 
 //state struct
