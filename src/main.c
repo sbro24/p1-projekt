@@ -16,23 +16,20 @@ void run_unit_tests();
 int main(void) {
 
     run_program();
-    run_unit_tests();
+    //run_unit_tests();
 
 
     return 0;
 }
 
-// write actual program here
 void run_program() {
     char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
     construct_party_array(parties);
-    int number_of_parties = count_parties(parties);
 
     county_t counties[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
-    construct_county_array(counties, parties, number_of_parties);
-    int number_of_counties = count_counties_in_struct(counties);
+    construct_county_array(counties, parties, count_parties(parties));
 
-    state_t state = construct_state(    counties, parties, number_of_parties);
+    state_t state = construct_state(counties, parties, count_parties(parties));
 
     output(state, parties, eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts), gallagher_index(state));
 }
@@ -40,20 +37,14 @@ void run_program() {
 // write unit test here
 void run_unit_tests() {
 
-
-    //dataimport_test();
-    //test_calc_avg_dist();
-    //test_calc_center();
-    //test_calc_dist();
-    //test_eval_fill();
-    //test_gallagher_index();
+    dataimport_test();
+    test_calc_avg_dist();
+    test_calc_center();
+    test_calc_dist();
+    test_eval_fill();
+    test_gallagher_index();
     output_to_txt2(dataimport_test_output);
-
 }
 
-void error_handling(char *message) {
-    printf("%s (press ENTER to end process)", message);
-    getchar();
-    exit(EXIT_FAILURE);
-}
+
 

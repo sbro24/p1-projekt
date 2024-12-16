@@ -15,7 +15,8 @@ target_include_directories(test_lib PUBLIC project_test)
 
 # Main executable
 add_executable(p1_projekt main.c
-        header.h)
+        header.h
+        lib/error_handler.c)
 
 
 # Main library link

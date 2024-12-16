@@ -5,7 +5,7 @@
 // Function that will run in main, which prints out the desired output of the program
 void output(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4], double eval_map, double gallagher_index) {
     // Function that calculates and prints vote percentages and seats per party
-    //output_vote_percentages_and_seats(state, parties);
+    output_vote_percentages_and_seats(state, parties);
 
     // Function that calculates and prints vote percentages per party per district
     district_vote_percentages(state, parties);
