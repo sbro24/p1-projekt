@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "dataimporter.h"
 #include "construct_state_header.h"
 #include "header.h"
 
@@ -56,6 +56,22 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
             state_results.total_votes[i] += state_results.districts[j].votes[i];
         }
     }
+
+    FILE *file = open_file("grid_north_carolina_correctID_version2.csv", "r");
+    int **dataStructINT = Allocate2dINTArray(MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    InitializeMatrixINT(dataStructINT, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    ReadFileDataInto2dINTArray(file, dataStructINT, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, ";");
+    fclose(file);
+
+    int **districtMap = CreateDistrictMap(dataStructINT, counties, count_counties_in_struct(counties), MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    int **districtGrid = Allocate2dINTArray(MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    InitializeMatrixINT(districtGrid, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    GetDistrictGrid(districtMap, districtGrid, counties[1].district, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+
+    // write state-wide district map to state.grid_map
+    VoidAllocate2dINTArray(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    InitializeMatrixINT(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+    VoidCopy2dArrayINT(districtMap, state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
 
     return state_results;
 }
@@ -163,4 +179,36 @@ int count_counties_in_struct(county_t counties[MAX_NUMBER_OF_COUNTIES]) {
         number_of_counties++;
     }
     return number_of_counties;
+}
+
+int **CreateDistrictMap(int **countyMap, county_t counties[MAX_NUMBER_OF_COUNTIES], int county_number, int rows, int columns) {
+    int **districtMap = Allocate2dINTArray(rows, columns);
+    InitializeMatrixINT(districtMap, rows, columns);
+    for (int j = 0; j < county_number; j++) {
+        if (counties[j].district != 0) {
+            for (int k = 0; k < rows; k++) {
+                for (int l = 0; l < columns; l++) {
+                    if (countyMap[k][l] == counties[j].index && districtMap[k][l] == 0) {
+                        districtMap[k][l] = counties[j].district;
+                    }
+                }
+            }
+        }
+        else {
+            printf("district not found\n");
+
+        }
+
+    }
+    return districtMap;
+}
+
+void GetDistrictGrid(int **districtMap, int **districtGrid, int districtID, int rows, int columns) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if(districtMap[i][j] == districtID) {
+                districtGrid[i][j] = 1;
+            }
+        }
+    }
 }

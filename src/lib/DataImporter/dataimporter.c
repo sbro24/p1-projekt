@@ -209,6 +209,22 @@ void pwd(void) {
     printf("Current working dir: %s\n", cwd);
 }
 
+void VoidCopy2dArrayINT(int **array1, int **array2, int rows, int columns) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            array2[i][j] = array1[i][j];
+        }
+    }
+}
+
+void InitializeMatrixINT(int **matrix, int rows, int columns) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            matrix[i][j] = 0;
+        }
+    }
+}
+
 
 /*
 * // an attempt at handling integers with n digits

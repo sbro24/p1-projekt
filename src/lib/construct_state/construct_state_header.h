@@ -19,3 +19,7 @@ int count_districts(county_t counties[MAX_NUMBER_OF_COUNTIES]);
 void get_unique_district_numbers(int district_numbers[MAX_NUMBER_OF_DISTRICTS], county_t counties[MAX_NUMBER_OF_COUNTIES]);
 void sum_district_votes(int district_votes[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES], int district_numbers[MAX_NUMBER_OF_DISTRICTS], county_t counties[MAX_NUMBER_OF_COUNTIES]);
 int find_winner(int* votes);
+
+
+int **CreateDistrictMap(int **countyMap, county_t counties[MAX_NUMBER_OF_COUNTIES], int county_number, int rows, int columns);
+void GetDistrictGrid(int **districtMap, int **districtGrid, int districtID, int rows, int columns);
