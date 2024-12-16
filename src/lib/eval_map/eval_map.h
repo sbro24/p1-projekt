@@ -19,7 +19,7 @@ district_test_t *create_district(int no_of_districts, district_test_t districts[
 void read_map_to_district(int no_of_districts, district_test_t districts_test[no_of_districts]);
 
 void print_district(int no_of_districts, district_test_t district_test[no_of_districts]);
-coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int district_no, int* count);
+coordinate_t* generate_coordinates(int rows, int cols, int** district, int district_no, int* count);
 
 //hjælpefunktion
 void calc_center (double* center_x, double* center_y, coordinate_t* coordinates, int count);

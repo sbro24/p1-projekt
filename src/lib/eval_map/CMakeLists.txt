@@ -4,3 +4,7 @@ add_library(eval_map_lib
         eval_fill.c
         eval_shape.c
 )
+
+target_link_libraries(eval_map_lib
+        dataimporter_lib
+)

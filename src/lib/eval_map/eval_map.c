@@ -4,6 +4,7 @@
 #include <eval_map.h>
 #include <string.h>
 
+#include "dataimporter.h"
 #include "header.h"
 
 /**
@@ -15,7 +16,8 @@
 double eval_map(state_t state) {
     coordinate_t* coordinates = NULL; //initialization of array of structs containing coordinates.
     int count = 0;
-    int no_of_districts = 14;
+
+    Print2dArrayINT(state.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
 
     double  evaluation_fill = 0,
             evaluation_fill_akk = 0,
@@ -24,8 +26,10 @@ double eval_map(state_t state) {
             evaluation_map = 0,
             evaluation_map_akk = 0;
 
-    for (int i = 1; i <= no_of_districts; i++) {
-        coordinates = generate_coordinates(MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, state.grid_map[MAX_GRID_SIZE_Y][MAX_GRID_SIZE_X], i, &count);
+
+    for (int i = 1; i <= 14; i++) {
+
+        coordinates = generate_coordinates(MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, state.grid_map, i, &count);
 
         evaluation_fill = eval_fill(count, coordinates);
         printf("Evaluation of fil: %lf\n", evaluation_fill);
@@ -40,11 +44,11 @@ double eval_map(state_t state) {
         evaluation_map_akk += evaluation_map;
 
         free(coordinates);
+
     }
 
 
     /*
-
     int district = 15;
     char file_name_path[30] = {"src/Output_files/output_district_"};
     char file_name[30];
@@ -85,7 +89,7 @@ double eval_map(state_t state) {
  * @return an array of (x, y) coordinates
  */
 
-coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols], int district_no, int* count) {
+coordinate_t* generate_coordinates(int rows, int cols, int** district, int district_no, int* count) {
 
     *count = 0; // Initialize count
 
@@ -95,14 +99,13 @@ coordinate_t* generate_coordinates(int rows, int cols, int district[rows][cols],
     // Traverse the 2D array
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            if (district[i][j] == 1) { // Only add coordinates for non-zero elements
+            if (district[i][j] == district_no) { // Only add coordinates for non-zero elements
                 coordinates[*count].y = i+0.5;
                 coordinates[*count].x = j+0.5;
                 (*count)++;
             }
         }
     }
-
 
     return coordinates;
 }
