@@ -20,6 +20,7 @@ void read_map_to_district(int no_of_districts, district_test_t districts_test[no
 
 void print_district(int no_of_districts, district_test_t district_test[no_of_districts]);
 coordinate_t* generate_coordinates(int rows, int cols, int** district, int district_no, int* count);
+void print_results_to_txt(int district_no, int** district, double eval_fill, double eval_shape);
 
 //hjælpefunktion
 void calc_center (double* center_x, double* center_y, coordinate_t* coordinates, int count);
