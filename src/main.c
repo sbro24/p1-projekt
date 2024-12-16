@@ -18,7 +18,6 @@ int main(void) {
     run_program();
     //run_unit_tests();
 
-
     return 0;
 }
 
