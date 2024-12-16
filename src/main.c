@@ -31,7 +31,7 @@ void run_program() {
 
     state_t state = construct_state(counties, parties, count_parties(parties));
 
-    output(state, parties, eval_map(MAX_NUMBER_OF_DISTRICTS, state.districts), gallagher_index(state));
+    output(state, parties, eval_map(state), gallagher_index(state));
 }
 
 // write unit test here

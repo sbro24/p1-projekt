@@ -5,10 +5,10 @@
 // Function that will run in main, which prints out the desired output of the program
 void output(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4], double eval_map, double gallagher_index) {
     // Function that calculates and prints vote percentages and seats per party
-    output_vote_percentages_and_seats(state, parties);
+     output_vote_percentages_and_seats(state, parties);
 
     // Function that calculates and prints vote percentages per party per district
-    district_vote_percentages(state, parties);
+    // district_vote_percentages(state, parties);
 
     // Function that prints the eval_map index
     print_eval_map_index(eval_map);
@@ -36,7 +36,7 @@ void output_vote_percentages_and_seats(state_t state, char parties[MAX_NUMBER_OF
     for(int i = 0; i < MAX_NUMBER_OF_PARTIES; i++) {
         // Calculate vote percentages
         vote_percentages[i] = 100.00 * state.total_votes[i] / total_votes;
-        //if (state.number_of_seats[i] <= 0) continue;
+        if (state.number_of_seats[i] <= 0) continue;
             printf("%s vote percentage: %.2f%\n", parties[i], vote_percentages[i]);
             printf("%s Party seats: %d\n", parties[i], state.number_of_seats[i]);
     }
@@ -45,15 +45,13 @@ void output_vote_percentages_and_seats(state_t state, char parties[MAX_NUMBER_OF
 
 // Function that prints the eval_map index
 void print_eval_map_index(double eval_map) {
-
-    printf("eval_map: %lf\n", eval_map);
+    printf("Eval_map index: %lf\n", eval_map);
     printf("\n");
 }
 
 // Function that prints the gallagher-index
 void print_gallagher_index(double gallagher_index) {
-
-    printf("gallagher_index: %.2f\n", gallagher_index);
+    printf("Gallagher-index: %.2f\n", gallagher_index);
     printf("\n");
 }
 
@@ -75,14 +73,13 @@ double calculate_final_score(double eval_map, double reformated_gallagher_index)
 // Function that prints the final score
 void print_final_score(double eval_map, double reformated_gallagher_index) {
     double final_score = calculate_final_score(eval_map, reformated_gallagher_index);
-    printf("final_score: %lf\n", final_score);
+    printf("Final score for North Carolina: %.2f\n", final_score);
 }
 
 void district_vote_percentages(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4]) {
     // Initialize variables
     int total_district_votes[MAX_NUMBER_OF_DISTRICTS] = {0};
     double district_vote_percentages[MAX_NUMBER_OF_DISTRICTS] = {0};
-
 
     // For loop to loop through the different districts'
     for(int j = 0; j < MAX_NUMBER_OF_DISTRICTS; j++) {
@@ -101,10 +98,5 @@ void district_vote_percentages(state_t state, char parties[MAX_NUMBER_OF_PARTIES
         printf("\n");
     }
     printf("\n");
-    /* Number of votes and percentage for democrats in district 2 3 and 12
-    int district_2_3_12 = total_district_votes[1] + total_district_votes[2] + total_district_votes[11];
-    printf("district 2 3 and 12 votes combined: %d\n", district_2_3_12);
-    double percent = 100.00 * district_2_3_12 / state.total_votes[0];
-    printf("percent: %.2f\n", percent); */
 }
 
