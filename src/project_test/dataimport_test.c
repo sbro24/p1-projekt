@@ -72,7 +72,7 @@ void dataimport_test(void) {
     //Write2dArrayINT(dataStructINT, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, "filetest1.txt", "w");
     //Write2dArrayINT(districtMap, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, "filetest2.txt", "w");
     //Write2dArrayINT(districtGrid, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, "filetest3.txt", "w");
-    Write2dArrayINT(state.districts[1].grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, "filetest4.txt", "w");
+    //Write2dArrayINT(state.districts[1].grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, "filetest4.txt", "w");
     //Print2dArrayINT(districtGrid,f.lineCount, f.longestLine);
 
 
