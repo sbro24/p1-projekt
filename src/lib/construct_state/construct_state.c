@@ -63,12 +63,9 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     ReadFileDataInto2dINTArray(file, dataStructINT, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X, ";");
     fclose(file);
 
-    int **districtMap = CreateDistrictMap(dataStructINT, counties, count_counties_in_struct(counties), MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
-    int **districtGrid = Allocate2dINTArray(MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
-    InitializeMatrixINT(districtGrid, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
-    GetDistrictGrid(districtMap, districtGrid, counties[1].district, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
 
     // write state-wide district map to state.grid_map
+    int **districtMap = CreateDistrictMap(dataStructINT, counties, count_counties_in_struct(counties), MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     VoidAllocate2dINTArray(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     InitializeMatrixINT(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     VoidCopy2dArrayINT(districtMap, state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
