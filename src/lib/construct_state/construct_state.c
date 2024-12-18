@@ -24,8 +24,6 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
         for (int j = 0; j < MAX_NUMBER_OF_PARTIES; j++) counties_copy[i].votes[j] = counties[i].votes[j];
     }
 
-    //int number_of_districts = count_districts(counties_copy);
-
     //get list of unique district number E.g {1, 2, 5 ,8}
     int district_numbers[MAX_NUMBER_OF_DISTRICTS] = {0};
     get_unique_district_numbers(district_numbers, counties);
@@ -37,7 +35,6 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     //sum all the votes in a district per party
     int district_votes[MAX_NUMBER_OF_DISTRICTS][MAX_NUMBER_OF_PARTIES] = {0};
     sum_district_votes(district_votes, district_numbers, counties);
-    //for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) printf("district_votes[%d] = { %d, %d, %d, %d, %d, %d }\n", i, district_votes[i][0], district_votes[i][1], district_votes[i][2], district_votes[i][3], district_votes[i][4], district_votes[i][5]);
     //add district_votes to state_t state_results
     for (int i = 0; i < MAX_NUMBER_OF_DISTRICTS; i++) {
         state_results.districts[i].district_number = district_numbers[i];
@@ -74,8 +71,6 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     VoidAllocate2dINTArray(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     InitializeMatrixINT(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     VoidCopy2dArrayINT(districtMap, state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
-
-
 
     return state_results;
 }
@@ -127,7 +122,6 @@ void get_unique_district_numbers(int district_numbers[MAX_NUMBER_OF_DISTRICTS], 
     int county_district_numbers[MAX_NUMBER_OF_COUNTIES] = {0};
     for (int i = 0; i < MAX_NUMBER_OF_COUNTIES; i++) county_district_numbers[i] = counties[i].district;
 
-    //TODO: only if district numbers lie beteen 1 - MAX_NUMBER_OF_DISTRICTS
     //iterate over unique districts found so far
     for (int i = 1; i < MAX_NUMBER_OF_DISTRICTS; i++) {
         //find the first county with district number i

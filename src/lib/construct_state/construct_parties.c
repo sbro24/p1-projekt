@@ -15,7 +15,6 @@ void construct_party_array(char parties[MAX_NUMBER_OF_PARTIES][4]) {
 
     //Declare a array of strings that's 4 characters long, E.g. {"D","E","M","\0"} (Party code + End char)
     char party_result[MAX_NUMBER_OF_PARTIES][4] = {""};
-
     get_unique_parties(file, party_result);
 
     //copy all the unique party codes into the string array parties specified in the function arguments
