@@ -38,8 +38,7 @@ typedef struct {
     int neighbors[MAX_NUMBER_OF_NEIGHBORS];
 } county_t;
 
-state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties);
 void error_handling(char *message);
-void run_program_thing();
+void run_program();
 void run_unit_tests();
 

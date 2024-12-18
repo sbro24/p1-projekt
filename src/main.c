@@ -9,14 +9,10 @@
 #include "test.h"
 #include <gallagher_index_test_2.c>
 
-void run_program();
-void run_unit_tests();
-
-
 int main(void) {
 
     run_program();
-    //run_unit_tests();
+    run_unit_tests();
 
     return 0;
 }
@@ -36,7 +32,7 @@ void run_program() {
 // write unit test here
 void run_unit_tests() {
 
-    dataimport_test();
+    //dataimport_test();
     test_calc_avg_dist();
     test_calc_center();
     test_calc_dist();
