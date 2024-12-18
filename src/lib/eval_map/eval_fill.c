@@ -1,7 +1,3 @@
-//
-// Created by mikke on 06-12-2024.
-//
-
 #include "eval_map.h"
 
 /**

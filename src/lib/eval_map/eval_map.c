@@ -4,7 +4,6 @@
 #include <eval_map.h>
 #include "header.h"
 
-
 /**
  * An evaluation of the state map in terms of fill and distance to center
  * @param state node from a state-struct containing a gridmap of the districts

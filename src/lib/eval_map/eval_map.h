@@ -1,7 +1,3 @@
-
-#ifndef EVAL_MAP_H
-#define EVAL_MAP_H
-
 #include "header.h"
 
 typedef struct {
@@ -25,5 +21,3 @@ double calc_avg_dist(int count, coordinate_t coordinates[count], double center_x
 //functions use in both evaluate shape and evaluate fill
 void calc_center (double* center_x, double* center_y, coordinate_t* coordinates, int count);
 double calc_dist (coordinate_t* coordinate_point, double center_x, double center_y);
-
-#endif //EVAL_MAP_H
