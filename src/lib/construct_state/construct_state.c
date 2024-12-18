@@ -5,7 +5,13 @@
 #include "construct_state_header.h"
 #include "header.h"
 
-
+/**
+* collects and calculates all the data needed in to a struct
+* @param county_t array with all the counties
+* @param array with all the unique parties codes
+* @param int of how many unique parties codes there are
+* @return state_t with all the data eval needs
+*/
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties) {
     state_t state_results = {{0, {0}, {{0}}},{0}, {0},{0}};
 

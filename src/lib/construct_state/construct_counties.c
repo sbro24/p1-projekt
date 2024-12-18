@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+/**
+* constructs an array of all the counties with data form the input file
+* @param array where the results are inputed
+* @param a list with all the unique parties codes
+* @param int of how many unique parties codes there are
+* @return void
+*/
 void construct_county_array(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties) {
     //Open the county file specified in "header.h"
     FILE* file = open_file(FILE_COUNTIES, "r");
