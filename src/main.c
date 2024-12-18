@@ -9,10 +9,15 @@
 #include "test.h"
 #include <gallagher_index_test_2.c>
 
+void run_program();
+void run_unit_tests();
+
+
 int main(void) {
 
+
+    if (test_prompt() == 'y') run_unit_tests();
     run_program();
-    run_unit_tests();
 
     return 0;
 }
@@ -38,7 +43,16 @@ void run_unit_tests() {
     test_calc_dist();
     test_eval_fill();
     test_gallagher_index();
-    output_to_txt2(dataimport_test_output);
+}
+
+char test_prompt() {
+    printf("Do you wish to run tests before the program? (y/n)\n");
+    char result;
+    while (1) {
+        scanf("%c", &result);
+        if (result == 'y' || result == 'n') return result;
+        printf("Invalid input! Do you wish to run tests before the program? (y/n)\n");
+    }
 }
 
 

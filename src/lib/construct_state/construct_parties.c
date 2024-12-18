@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <string.h>
 
-
 void construct_party_array(char parties[MAX_NUMBER_OF_PARTIES][4]) {
     //Open the county file specified in "header.h"
     FILE* file = open_file(FILE_COUNTIES, "r");

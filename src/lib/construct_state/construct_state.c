@@ -7,7 +7,6 @@
 
 
 state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[MAX_NUMBER_OF_PARTIES][4], int number_of_parties) {
-    //TODO: Make state empty
     state_t state_results = {{0, {0}, {{0}}},{0}, {0},{0}};
 
     //copy counties data
@@ -69,6 +68,8 @@ state_t construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char parties[
     VoidAllocate2dINTArray(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     InitializeMatrixINT(state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
     VoidCopy2dArrayINT(districtMap, state_results.grid_map, MAX_GRID_SIZE_Y, MAX_GRID_SIZE_X);
+
+
 
     return state_results;
 }

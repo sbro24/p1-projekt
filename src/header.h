@@ -41,4 +41,5 @@ typedef struct {
 void error_handling(char *message);
 void run_program();
 void run_unit_tests();
+char test_prompt();
 
