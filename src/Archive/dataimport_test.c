@@ -34,7 +34,7 @@ typedef struct {
     int neighbors[MAX_NUMBER_OF_NEIGHBORS];
 } county_t;
 
-  */
+
 
 void dataimport_test(void) {
     char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
@@ -87,7 +87,4 @@ void dataimport_test(void) {
 
 }
 
-
-
-
-
+*/

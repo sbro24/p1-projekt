@@ -7,7 +7,7 @@
 #include "../header.h"
 #include "../lib/output/output.h"
 #include "../lib/eval_map/eval_map.h"
-
+/*
 void dataimport_test_output(void) {
     int buf = 500;
     FILE *file = open_file("grid_north_carolina.csv", "r");
@@ -59,7 +59,7 @@ void dataimport_test_output(void) {
 }
 
 
-/*
+
 void output_to_txt(const char *test_output)
 {
     // open the file for writing
@@ -76,7 +76,7 @@ void output_to_txt(const char *test_output)
     // close the file
     fclose(fp);
 }
-*/
+
 void output_to_txt2(void (*f)(void))
 {
     // open the file for writing
@@ -93,3 +93,4 @@ void output_to_txt2(void (*f)(void))
     // close the file
     fclose(fp);
 }
+*/

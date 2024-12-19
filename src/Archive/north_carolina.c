@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+/*
 #define COUNTY_NAME_LENGTH 30
 
 int count_counties(FILE *raw_file);
@@ -102,3 +102,4 @@ int count_counties(FILE *raw_file) {
 
 
 
+*/
