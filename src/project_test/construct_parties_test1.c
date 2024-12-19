@@ -172,7 +172,6 @@ state_t test_construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char par
         //loop over all districts and sums to total_votes of party index i
         for (int j = 0; j < 7; j++) {
             state_results.total_votes[i] += state_results.districts[j].votes[i];
-            printf("%d %d\n", state_results.districts[j].district_number, state_results.districts[j].votes[i]);
         }
     }
 

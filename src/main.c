@@ -15,7 +15,7 @@ void run_unit_tests();
 
 int main(void) {
     if (test_prompt() == 'y') run_unit_tests();
-    run_program();
+    //run_program();
 
     return 0;
 }
