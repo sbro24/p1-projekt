@@ -30,6 +30,7 @@ void construct_test_party_array(char parties[MAX_NUMBER_OF_PARTIES][4]) {
     if (count_parties(parties) == total_amount_of_parties) {
         printf("Number of parties = %d, test passed\n", count_parties(parties));
     }
+    printf("\n");
 
     fclose(file);
 }
@@ -77,6 +78,7 @@ void test_construct_county_array(county_t counties[MAX_NUMBER_OF_COUNTIES], char
         }
         printf("\n");
     }
+    printf("\n");
 
     //Test if index and district numbers are read correctly
     //Test needs to run 10 times to pass
@@ -84,6 +86,7 @@ void test_construct_county_array(county_t counties[MAX_NUMBER_OF_COUNTIES], char
         if (counties[i].index == index_array[i] && counties[i].district == district_array[i])
             printf("correct index and district test %d passed\n", i+1);
     }
+    printf("\n");
 
     //Test if votes for each party per index are read correctly
     //This test needs to run 10 times to pass
@@ -95,6 +98,7 @@ void test_construct_county_array(county_t counties[MAX_NUMBER_OF_COUNTIES], char
                 && counties[i].votes[j+3] == LIB_votes_array[i])
                 printf("correct votes test %d passed\n", i+1);
     }
+    printf("\n");
 
     fclose(file);
 }
@@ -181,6 +185,7 @@ state_t test_construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char par
             printf("district 1 party votes test %d passed\n", i+1);
         }
     }
+    printf("\n");
 
     //Test if number of seats and total votes per party are read and counted correctly
     //This test needs to complete 4 times to pass
@@ -189,6 +194,8 @@ state_t test_construct_state(county_t counties[MAX_NUMBER_OF_COUNTIES], char par
             printf("number of seats and total votes test %d passed\n", i);
         }
     }
+
+    printf("\n");
 
         return state_results;
 }

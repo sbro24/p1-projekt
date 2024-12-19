@@ -35,6 +35,9 @@ void run_program() {
 // write unit test here
 void run_unit_tests() {
 
+    //formatting
+    printf("----------------------------------------------------------");
+    printf("\nTest results:\n\n");
     test_calc_avg_dist();
     test_calc_center();
     test_calc_dist();

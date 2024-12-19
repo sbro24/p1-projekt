@@ -16,6 +16,10 @@ void test_gallagher_index() {
     double difference_squared[5] = {0};
     double half_of_sum_of_difference_squared = 0;
 
+    //initialize tolerance for rounding errors and test variable
+    double expected_gallagher_index = 5.4298;
+    double tolerance = 0.1;
+
     // Test state struct
     typedef struct {
         // Provide values to test_number_of_seats and test_total_votes for testing
@@ -48,5 +52,9 @@ void test_gallagher_index() {
     }
     // Square root of the halved sum is the desired Gallagher-Index
     double gallagher_index = sqrt(half_of_sum_of_difference_squared);
-    printf("\n gallagher index = %lf\n", gallagher_index);
+    if (fabs(expected_gallagher_index - gallagher_index) <= tolerance) {
+        printf("\nGallagher index with test data = %lf\n", gallagher_index);
+        printf("Gallagher index test passed\n");
+    }
+    printf("\n");
 }

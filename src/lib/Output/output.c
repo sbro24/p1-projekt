@@ -4,6 +4,11 @@
 
 // Function that will run in main, which prints out the desired output of the program
 void output(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4], double eval_map, double gallagher_index) {
+
+    //Formatting
+    printf("----------------------------------------------------------");
+    printf("\nProgram results:\n\n");
+
     // Function that calculates and prints vote percentages and seats per party
      output_vote_percentages_and_seats(state, parties);
 
