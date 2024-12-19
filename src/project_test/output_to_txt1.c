@@ -4,6 +4,9 @@
 #include "dataimporter.h"
 #include "construct_state_header.h"
 #include "test.h"
+#include "header.h"
+#include "output.h"
+#include "eval_map.h"
 
 void dataimport_test_output(void) {
     int buf = 500;

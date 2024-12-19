@@ -41,6 +41,11 @@ void run_unit_tests() {
     test_calc_dist();
     test_eval_fill();
     test_gallagher_index();
+    char parties[MAX_NUMBER_OF_PARTIES][4] = {""};
+    construct_test_party_array(parties);
+    county_t counties[MAX_NUMBER_OF_COUNTIES] = {{0, "", 0, {0},{0}}};
+    test_construct_county_array(counties, parties, count_parties(parties));
+    test_construct_state(counties, parties, count_parties(parties));
 }
 
 char test_prompt() {
