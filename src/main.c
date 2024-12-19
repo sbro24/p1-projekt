@@ -15,7 +15,7 @@ void run_unit_tests();
 
 int main(void) {
     if (test_prompt() == 'y') run_unit_tests();
-    //run_program();
+    run_program();
 
     return 0;
 }
@@ -35,7 +35,6 @@ void run_program() {
 // write unit test here
 void run_unit_tests() {
 
-    //dataimport_test();
     test_calc_avg_dist();
     test_calc_center();
     test_calc_dist();

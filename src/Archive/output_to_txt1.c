@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "dataimporter.h"
-#include "construct_state_header.h"
-#include "test.h"
-#include "header.h"
-#include "output.h"
-#include "eval_map.h"
+#include "../lib/DataImporter/dataimporter.h"
+#include "../lib/construct_state/construct_state_header.h"
+#include "../project_test/test.h"
+#include "../header.h"
+#include "../lib/output/output.h"
+#include "../lib/eval_map/eval_map.h"
 
 void dataimport_test_output(void) {
     int buf = 500;
