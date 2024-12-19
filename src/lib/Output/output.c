@@ -50,13 +50,13 @@ void output_vote_percentages_and_seats(state_t state, char parties[MAX_NUMBER_OF
 
 // Function that prints the eval_map index
 void print_eval_map_index(double eval_map) {
-    printf("Evaluation of local representation: %lf\n", eval_map);
+    printf("Evaluation of local representation (0 - 100): %.2lf\n", eval_map);
     printf("\n");
 }
 
 // Function that prints the gallagher-index
 void print_gallagher_index(double gallagher_index) {
-    printf("Evaluation of proportionality (Gallagher index): %.2f\n", gallagher_index);
+    printf("Evaluation of proportionality (Gallagher index) (0 - 100): %.2f\n", gallagher_index);
     printf("\n");
 }
 
@@ -78,7 +78,7 @@ double calculate_final_score(double eval_map, double reformated_gallagher_index)
 // Function that prints the final score
 void print_final_score(double eval_map, double reformated_gallagher_index) {
     double final_score = calculate_final_score(eval_map, reformated_gallagher_index);
-    printf("Final score for North Carolina: %.2f\n", final_score);
+    printf("Final score for North Carolina (0 - 100): %.2f\n", final_score);
 }
 
 void district_vote_percentages(state_t state, char parties[MAX_NUMBER_OF_PARTIES][4]) {
