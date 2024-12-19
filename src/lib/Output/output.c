@@ -50,13 +50,13 @@ void output_vote_percentages_and_seats(state_t state, char parties[MAX_NUMBER_OF
 
 // Function that prints the eval_map index
 void print_eval_map_index(double eval_map) {
-    printf("Eval_map index: %lf\n", eval_map);
+    printf("Evaluation of local representation: %lf\n", eval_map);
     printf("\n");
 }
 
 // Function that prints the gallagher-index
 void print_gallagher_index(double gallagher_index) {
-    printf("Gallagher-index: %.2f\n", gallagher_index);
+    printf("Evaluation of proportionality (Gallagher index): %.2f\n", gallagher_index);
     printf("\n");
 }
 
