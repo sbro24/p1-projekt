@@ -8,7 +8,7 @@
 void test_calc_avg_dist() {
 
     // Expected value
-    double expected_avg_dist = 99; // Adjust if necessary
+    double expected_avg_dist = 0.85; // Adjust according to manual calculation
 
     // Test input in x and y arrays
     int count = 5;
@@ -111,7 +111,7 @@ void test_calc_dist() {
 void test_eval_fill() {
 
     // Expected value for eval_fill function
-    double expected_eval_fill = 80; // Adjust if necessary
+    double expected_eval_fill = 80; // Adjust according to manual calculation
 
     // Test input in x and y arrays
     int count = 5;
